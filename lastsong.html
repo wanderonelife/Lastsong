@@ -792,6 +792,10 @@ body.kb .scroll{padding-bottom:40vh}
 .fShock b{font-size:24px;white-space:nowrap;font-weight:900;color:#fff;text-shadow:0 0 14px #ff4d6d,0 3px 0 #6b1d36;animation:fBig .6s cubic-bezier(.2,1.6,.4,1)}
 @keyframes fFreeze{0%,35%{transform:none;filter:grayscale(1) brightness(1.3)}45%{transform:translateX(-6px) rotate(-6deg)}55%{transform:translateX(6px) rotate(6deg)}65%{transform:translateX(-5px)}75%{transform:translateX(5px)}100%{transform:none;filter:none}}
 @keyframes fBig{0%{transform:scale(.3);opacity:0}100%{transform:none;opacity:1}}
+.glowBtn{background:linear-gradient(90deg,#ffd77a,#ff8fc8,#b98cff)!important;color:#2a0f3d!important;border:none!important;animation:glowBtn 1.6s ease-in-out infinite;font-weight:700!important}
+@keyframes glowBtn{0%,100%{box-shadow:0 0 10px rgba(255,215,122,.5),0 0 0 0 rgba(255,143,200,.5)}50%{box-shadow:0 0 26px rgba(255,215,122,.95),0 0 0 8px rgba(255,143,200,0)}}
+.tapPop{animation:tapPop .3s ease}
+@keyframes tapPop{50%{transform:scale(.95)}}
 </style>
 </head>
 <body>
@@ -815,7 +819,7 @@ body.kb .scroll{padding-bottom:40vh}
     <div class="neonsign">CLUB ◇ MEMORIES</div>
     <h1 data-i="title"></h1>
     <p class="center lead" style="margin-top:14px" data-i="title_sub"></p>
-    <p class="center mincho" style="margin:4px 0 0;color:var(--gold);text-shadow:0 0 10px rgba(255,215,122,.6);font-size:15px" data-i="revenge_tag"></p>
+    
     <div class="grow"></div>
     <div style="display:flex;align-items:center;gap:10px;justify-content:center">
       <img class="her" id="herTitle" style="height:170px">
@@ -1025,7 +1029,7 @@ body.kb .scroll{padding-bottom:40vh}
       <div id="friendList"></div>
       <details class="memo"><summary data-i="memo12_s"></summary><span data-i="memo12"></span></details>
     </div>
-    <button class="btn ghost small" onclick="playDanmaku()" data-i="friend_play"></button>
+    <button class="btn glowBtn" onclick="playDanmaku()" data-i="friend_play"></button>
     <button class="btn" id="next12" onclick="addFriend();playCut('d',()=>go(13))" data-i="next"></button>
   </section>
 
@@ -1070,7 +1074,7 @@ body.kb .scroll{padding-bottom:40vh}
   <section class="scene dawnink" id="s10">
     <div class="scroll"><div class="endcard" id="endcard"></div></div>
     <button class="btn" id="gardenStart" onclick="startGarden()" style="display:none"></button>
-    <button class="btn ghost small" onclick="playDanmaku()" data-i="friend_listen"></button>
+    <button class="btn glowBtn" onclick="playDanmaku()" data-i="friend_listen"></button>
     <button class="btn ghost small" onclick="openOma()" data-i="open_oma"></button>
     <button class="btn ghost small" onclick="location.reload()" data-i="restart"></button>
   </section>
@@ -1167,12 +1171,11 @@ let LANG='ja';
 try{ if(localStorage.getItem('lastsong_lang')==='zh') LANG='zh' }catch(e){}
 const I={
  title:{ja:"ラストソング",zh:"最後一首歌"},
- title_sub:{ja:"楽しかった、で終わらせて<br>幸せになりにいくゲーム",zh:"用「很開心」畫下句點，<br>走向幸福的遊戲"},
- concept:{ja:"好きだった人を、<br>あなたを楽しませてくれた<br><b style=\"color:var(--neon)\">「ホスト」</b>だったと思ってみよう。<br>夢みたいに楽しかった。<br>でも、お店はもう閉店。<br>だから――仕方ない。",
-          zh:"把喜歡過的人，<br>想成是陪你度過快樂時光的<br><b style=\"color:var(--neon)\">「男公關」</b>吧。<br>像夢一樣快樂。<br>但店已經打烊了。<br>所以——沒辦法。"},
+ title_sub:{ja:"未練、あります。<br>でも、幸せにもなりたい。",zh:"還有留戀。<br>但是，也想要幸福。"},
+ concept:{ja:"あの恋、最高だった。<br>……って、ちょっと盛ってない？<br><br>泣いて、笑って、<br>思い出にツッコむ。<br>失恋した夜の、<br>ちょっと変わったゲーム。",zh:"那段戀愛，超棒的。<br>……欸，是不是有點美化了？<br><br>哭一哭，笑一笑，<br>吐槽一下回憶。<br>失戀的夜晚，<br>一個有點奇怪的遊戲。"},
  name_label:{ja:"好きだった人の名前（あだ名でも）",zh:"喜歡過的人的名字（暱稱也可以）"},
  name_ph:{ja:"あの人",zh:"那個人"},
- enter:{ja:"🌙 今夜から、はじめる",zh:"🌙 從今晚開始"},
+ enter:{ja:"今夜のラストソングをはじめる 🍸",zh:"開始今晚的最後一首歌 🍸"},
  enter_sub:{ja:"約15分 ・ 途中でやめてもOK",zh:"約15分鐘 ・ 中途停下也OK"},
  to_garden:{ja:"🌱 AFTER. の旅へ（{C}日分の記録）",zh:"🌱 前往 AFTER. 的旅程（{C}天的紀錄）"},
  next:{ja:"次へ",zh:"下一步"},
@@ -1228,8 +1231,8 @@ const I={
  closing:{ja:"📢 閉店のお知らせ<br><br>本日をもちまして<br>「{N}」は閉店いたします。<br>これまでのご来店、<br>まことにありがとうございました。",zh:"📢 打烊公告<br><br>「{N}」<br>將於今日起結束營業。<br>感謝您一直以來的光臨。"},
  closing_note:{ja:"……そう。あの人は、私だけの「ホスト」だった。<br>楽しい夢を見せてくれた。でも、お店はもう閉まる。",zh:"……對。那個人，是只屬於我的「男公關」。<br>讓我做了一場快樂的夢。但是，店要打烊了。"},
  closed:{ja:"（既読。そっと画面を閉じた）",zh:"（已讀。輕輕關上了畫面）"},
- hold_intro:{ja:"最後の灯りを消せるのは、私だけ。<br>ボタンを長押しして。",zh:"能關掉最後一盞燈的，只有我。<br>長按按鈕吧。"},
- hold_btn:{ja:"仕方ない（長押し）",zh:"沒辦法（長按）"},
+ hold_intro:{ja:"最後の灯りを消せるのは、私だけ。<br>ボタンをタップして。",zh:"能關掉最後一盞燈的，只有我。<br>點一下按鈕吧。"},
+ hold_btn:{ja:"仕方ない（タップ）",zh:"沒辦法（點一下）"},
  hold_done:{ja:"灯りが消えた。<br>でも、真っ暗じゃない。<br>お店の外には、わたしの人生がある。",zh:"燈熄了。<br>但並不是一片漆黑。<br>店外，有我自己的人生。"},
  memo6_s:{ja:"🧠 心理学メモ：区切りの儀式",zh:"🧠 心理學小筆記：告別的儀式"},
  memo6:{ja:"「ここで終わり」と区切る儀式は、終わりを心で受け入れる助けになると言われています。そして、元恋人のSNSを見続ける人ほど立ち直りが遅い傾向も（Marshall, 2012）。右上の「お守り」→「お片付け」も使ってみてね。",
@@ -1891,14 +1894,13 @@ function startHold(){
   $('holdArea').style.display='block';$('holdText').innerHTML=T('hold_intro');
   const btn=$('holdBtn'),fill=$('holdFill');btn.style.display='block';$('holdArea').scrollIntoView({behavior:'smooth'});
   const Lt=$('lights');Lt.innerHTML='';for(let i=0;i<5;i++){const l=document.createElement('div');l.className='lt';Lt.appendChild(l)}
-  let p=0,t=null,done=false;const DUR=4500;
-  const tick=()=>{p=Math.min(1,p+50/DUR);fill.style.width=(p*100)+'%';const k=Math.floor(p*5);
+  let k=0,done=false;fill.style.width='0';$('holdText').innerHTML=T('hold_intro');
+  btn.onpointerdown=null;btn.onpointerup=null;btn.onpointerleave=null;btn.onpointercancel=null;
+  btn.onclick=()=>{if(done)return;k++;fill.style.transition='width .35s ease';fill.style.width=(k/5*100)+'%';
     document.querySelectorAll('.lt').forEach((l,i)=>l.classList.toggle('off',i<k));
-    $('holdText').innerHTML=L(HOLD_LINES[Math.min(4,k)]);
-    if(p>=1&&!done){done=true;stop();finishHold()}};
-  const start=e=>{e.preventDefault();if(done||t)return;t=setInterval(tick,50)};
-  const stop=()=>{clearInterval(t);t=null;if(!done){const back=setInterval(()=>{if(t||done){clearInterval(back);return}p=Math.max(0,p-0.02);fill.style.width=(p*100)+'%';if(p<=0)clearInterval(back)},50)}};
-  btn.onpointerdown=start;btn.onpointerup=stop;btn.onpointerleave=stop;btn.onpointercancel=stop;btn.oncontextmenu=e=>e.preventDefault();
+    $('holdText').innerHTML=L(HOLD_LINES[Math.min(4,k-1)]);
+    btn.classList.remove('tapPop');btn.offsetHeight;btn.classList.add('tapPop');
+    if(k>=5){done=true;setTimeout(finishHold,900)}};
 }
 function finishHold(){
   $('holdBtn').disabled=true;$('holdText').innerHTML=T('hold_done');
@@ -2811,9 +2813,6 @@ const FILT=[
  {e:"💐",m:{ja:"花を<br>プレゼントしてくれた",zh:"他送了<br>我花"},r:{ja:"……花はきれいだった。<br>私が欲しかったのは、もう少し長持ちする愛情。",zh:"……花很漂亮。<br>我想要的，是能維持久一點的愛。"}},
  {e:"📺",m:{ja:"同じドラマに<br>ハマってた",zh:"我們迷上了<br>同一部劇"},r:{ja:"……ドラマの続きは一緒に見たのに、<br>私たちの続きは話してくれなかった。",zh:"……劇的後續一起看了，<br>我們的後續他卻不肯談。"}},
  {e:"🚙",m:{ja:"ドライブ中、<br>好きな曲を流してくれた",zh:"兜風的時候，<br>他放了喜歡的歌"},r:{ja:"……彼のプレイリストは全部覚えた。<br>私の好きな曲、何曲知ってた？",zh:"……他的歌單我全背起來了。<br>我喜歡的歌，他知道幾首？"}},
- {e:"🌅",m:{ja:"朝起きたら、<br>隣にいてくれた",zh:"早上醒來，<br>他就在身邊"},r:{ja:"……隣にはいた。<br>でも、心まで隣にいたのはいつまで？",zh:"……人是在旁邊。<br>但心也在旁邊，是到什麼時候？"}},
- {e:"🫶",m:{ja:"「無理しなくていいよ」って<br>言ってくれた",zh:"他說<br>「不用勉強喔」"},r:{ja:"……無理しないと続かなかったの、<br>この恋なんだけど。",zh:"……不勉強就撐不下去的，<br>明明是這段戀愛。"}},
- {e:"🎬",m:{ja:"一緒に映画を観て<br>泣いた",zh:"一起看電影<br>一起哭了"},r:{ja:"……映画の登場人物には共感してた。<br>私が泣いた理由は、わかってくれてた？",zh:"……他對電影角色很有共鳴。<br>我哭的理由，他懂嗎？"}},
  {e:"🧳",m:{ja:"旅行の帰り道まで<br>幸せだった",zh:"旅行到回家路上<br>都好幸福"},r:{ja:"……帰ってから、<br>次の旅行を誘ったのはまた私。",zh:"……回來之後，<br>約下一次旅行的又是我。"}},
  {e:"🧸",m:{ja:"彼に甘えられるのが<br>うれしかった",zh:"他跟我撒嬌，<br>我好開心"},r:{ja:"……気づいたら、<br>彼のお世話係みたいになってた。",zh:"……回過神來，<br>我好像變成他的保母了。"}},
  {e:"🍁",m:{ja:"紅葉を<br>一緒に見た",zh:"一起看了<br>楓葉"},r:{ja:"……あの景色はきれいだった。<br>彼がいなくても、紅葉はきれい。",zh:"……那片風景很美。<br>沒有他，楓葉也一樣美。"}},
@@ -2849,8 +2848,7 @@ const FILT=[
  {e:"🪄",m:{ja:"もう一度会えたとき、<br>運命だと思った",zh:"再見到他的時候，<br>以為是命運"},r:{ja:"……会えたのは事実。<br>でも、選び直してくれたかは別の話。",zh:"……見到是事實。<br>但他有沒有重新選擇我，是另一回事。"}},
  {e:"❤️",m:{ja:"それでも、<br>彼のことが大好きだった",zh:"就算這樣，<br>我還是好喜歡他"},r:{ja:"……うん。それは本当。<br>でも、私のことも、もう少し好きになってあげたい。",zh:"……嗯。那是真的。<br>但我也想，再多喜歡自己一點。"}},
  {e:"🥺",m:{ja:"「私がいないと寂しい」って<br>言ってくれた",zh:"他說<br>「沒有你好寂寞」"},r:{ja:"……寂しいときは必要だった。<br>でも、幸せなときも私を選んでくれてた？",zh:"……寂寞的時候需要我。<br>但幸福的時候，他也選我嗎？"}},
- {e:"💞",m:{ja:"「ありのままの君が好き」って<br>言ってくれた",zh:"他說<br>「喜歡原本的你」"},r:{ja:"……なのに、いつから私は<br>嫌われないために、自分を変え続けてたんだろう。",zh:"……可是，我是從什麼時候開始<br>為了不被討厭，一直改變自己的？"}},
- {e:"💔",m:{ja:"あの人を失って、<br>人生でいちばん泣いた",zh:"失去他，<br>是我人生哭最多的時候"},r:{ja:"……ちょっと待って。<br>人生でいちばん私を泣かせた人を、<br>人生でいちばん愛してたの？",zh:"……等一下。<br>讓我哭最多的人，<br>就是我最愛的人嗎？"},last:1}
+ {e:"💞",m:{ja:"「ありのままの君が好き」って<br>言ってくれた",zh:"他說<br>「喜歡原本的你」"},r:{ja:"……なのに、いつから私は<br>嫌われないために、自分を変え続けてたんだろう。",zh:"……可是，我是從什麼時候開始<br>為了不被討厭，一直改變自己的？"}}
 ];
 const FILT_A=[["でしょ。脳が盛ってたの。","對吧。是大腦幫他加分了。"],["はい、フィルター1枚はがれた。","好，撕掉一層濾鏡了。"],["実物、思ったより普通。","本人，比想像中普通。"],["それ、恋人なら最低ラインね。","那是當戀人的最低標準喔。"],["次回の恋愛、審査基準を上げてまいります。","下一次戀愛，審核標準要提高了。"],["思い出補正、おそるべし。","回憶濾鏡，太可怕了。"],["脳内ドラマ、ちょっと盛りすぎ。","腦內小劇場，加太多戲了。"],["はい、そこ再審査。","好，這條重新審查。"]].map(([ja,zh])=>({ja,zh}));
 const FP=(ja,zh)=>({ja,zh});
@@ -3266,7 +3264,7 @@ function kusoCount(){try{return +(localStorage.getItem(KKEY)||0)}catch(e){return
 let KS=null;
 function openKuso(done){KS={done,pick:null,custom:'',before:8,hits:0};$('ks').classList.add('on');ksPick()}
 function closeKuso(){$('ks').classList.remove('on','cool');const d=KS&&KS.done;KS=null;if(CUR===11)renderGarden();d&&d()}
-function ksPick(){
+function ksPick(){KS.breathing=false;clearTimeout(KS.bt);
   $('ksBody').innerHTML=`<div class="sosHead">😤 ${T('ks_t')}</div>
    <p class="mincho center" style="font-size:18px;margin:6px 0">${T('ks_q')}</p>
    <div class="mrList">${KUSO.map((x,i)=>`<div class="chip" onclick="ksSel(${i},this)">${L(x.s)}</div>`).join('')}</div>
@@ -3302,17 +3300,24 @@ function ksSmash(){
       setTimeout(ksCool,1400)}};
 }
 function ksCool(){
-  KS.breath=0;$('ks').classList.add('cool');
+  KS.breath=0;$('ks').classList.add('cool');clearTimeout(KS.bt);
   $('ksBody').innerHTML=`<div class="sosHead">🌬️ ${T('ks_cool_t')}</div>
    <div class="mincho center" style="font-size:22px;margin:10px 0">${T('ks_broke')}</div>
-   <p class="center lead">${T('ks_cool')}</p>
-   <div class="breath" id="ksBreath" style="transform:scale(.9);transition:transform 1.5s ease">${T('ks_exhale')}</div>
-   <button class="btn" id="ksBtn" onclick="ksBreathe()">${T('ks_exhale_btn',{C:0})}</button>`;
+   <p class="center lead">${Q('怒りのピークは、数分で下がっていく。<br>ゆっくり、3回、息をしよう。','憤怒的高峰，幾分鐘就會降下來。<br>慢慢地，呼吸3次。')}</p>
+   <div class="breath" id="ksBreath" style="transform:scale(.6);transition:transform 3s ease-in-out">🌬️</div>
+   <p class="center" id="ksBn" style="font-size:13px;color:var(--dim);min-height:20px"></p>
+   <button class="btn" id="ksBtn" onclick="ksBreathe()">${Q('スタート','開始')}</button>`;
 }
 function ksBreathe(){
-  const b=$('ksBreath');KS.breath++;b.style.transform='scale(.5)';setTimeout(()=>{if($('ksBreath'))b.style.transform='scale(.9)'},1600);
-  $('ksBtn').textContent=T('ks_exhale_btn',{C:KS.breath});
-  if(KS.breath>=3){$('ksBtn').disabled=true;setTimeout(ksTruth,1700)}
+  const btn=$('ksBtn');
+  if(KS.breathing){clearTimeout(KS.bt);KS.breathing=false;ksTruth();return}
+  KS.breathing=true;btn.textContent=Q('終了','結束');btn.classList.add('ghost');
+  const b=$('ksBreath'),n=$('ksBn');let i=0;
+  const cyc=()=>{if(!$('ksBreath')||!KS.breathing)return;
+    if(i>=3){b.textContent='🌸';b.style.transform='scale(.8)';n.textContent=Q('おつかれさま。','辛苦了。');btn.classList.remove('ghost');return}
+    i++;n.textContent=`${i} / 3`;b.style.transition='transform 3s ease-in-out';b.style.transform='scale(1)';b.textContent=Q('すって…','吸氣…');
+    KS.bt=setTimeout(()=>{if(!$('ksBreath'))return;b.style.transition='transform 4s ease-in-out';b.style.transform='scale(.55)';b.textContent=Q('はいて…','吐氣…');KS.bt=setTimeout(cyc,4000)},3000)};
+  cyc();
 }
 function ksTruth(){
   const x=KS.pick!=null?KUSO[KS.pick]:null;const act=KUSO_ACT[Math.floor(Math.random()*KUSO_ACT.length)];
