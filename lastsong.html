@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>ラストソング</title>
+<title>last song 暈船版</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -796,6 +796,9 @@ body.kb .scroll{padding-bottom:40vh}
 @keyframes glowBtn{0%,100%{box-shadow:0 0 10px rgba(255,215,122,.5),0 0 0 0 rgba(255,143,200,.5)}50%{box-shadow:0 0 26px rgba(255,215,122,.95),0 0 0 8px rgba(255,143,200,0)}}
 .tapPop{animation:tapPop .3s ease}
 @keyframes tapPop{50%{transform:scale(.95)}}
+.lfRel{display:flex;gap:6px}
+.lfRel button{flex:1;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.06);color:#fff;border-radius:999px;padding:9px 4px;font:inherit;font-size:13px;cursor:pointer}
+.lfRel button.on{background:linear-gradient(90deg,#ff8fc8,#b98cff);border-color:transparent;font-weight:700;box-shadow:0 0 12px rgba(255,143,200,.5)}
 </style>
 </head>
 <body>
@@ -1169,6 +1172,17 @@ const HER=["data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKMAAAFoCAYAAAA7NEtDAA
 /* ================= i18n ================= */
 let LANG='ja';
 try{ if(localStorage.getItem('lastsong_lang')==='zh') LANG='zh' }catch(e){}
+let REL='date';try{REL=((JSON.parse(localStorage.getItem('lastsong_life_v1')||'null')||{}).rel)||'date'}catch(e){}
+const I_CRUSH={
+ lf_dur:{ja:"{N}を好きだった期間は？",zh:"為{N}暈船多久了？"},
+ lf_r1:{ja:"{N}を想っていたのは、<br>あなたの人生の",zh:"為{N}暈船的時間，<br>是你人生的"},
+ lf_write2:{ja:"覚えてない年・書きたくない年は、空欄でOK。💔 は{N}を想ってた年。",zh:"記不得、不想寫的年份，空著也OK。💔 是為{N}暈船的年份。"},
+ lf_with:{ja:"{N}を想ってた",zh:"為{N}暈船"},
+ lf_e2:{ja:"そのうち、{N}を想ってたのは……",zh:"其中，為{N}暈船的時間是……"},
+ chat1:{ja:"ごめん。<br>そういうつもりじゃなかった。",zh:"對不起。<br>我不是那個意思。"},
+ chat2:{ja:"これからも、<br>いい友だちでいよう。",zh:"以後，<br>我們還是當好朋友吧。"},
+ rp_t:{ja:"{N}の通知表（暈船編）",zh:"{N}的成績單（暈船篇）"}
+};
 const I={
  title:{ja:"ラストソング",zh:"最後一首歌"},
  title_sub:{ja:"未練、あります。<br>でも、幸せにもなりたい。",zh:"還有留戀。<br>但是，也想要幸福。"},
@@ -1623,9 +1637,10 @@ const I={
  her_up:{ja:"✨ 変身！わたし、また少し輝いた。",zh:"✨ 變身！我，又更閃亮了一點。"},
  g_streak_msg:{ja:"{C}回目の水やり。昨日の私より、ほんの少し前へ。",zh:"第{C}次澆水。比昨天的我，往前了一點點。"}
 };
-function T(k,v={}){let s=I[k];s=s?(s[LANG]??s.ja):k;if(typeof s!=='string')return s;
-  s=s.replace(/\{N\}/g,NAME[LANG]).replace(/\{ME\}/g,ME||(LANG==='zh'?'我':'わたし'));for(const x in v)s=s.split('{'+x+'}').join(v[x]);return s}
-function L(o){return (o[LANG]??o.ja).replace(/\{N\}/g,NAME[LANG])}
+function T(k,v={}){let s=(REL==='crush'&&I_CRUSH[k])||I[k];s=s?(s[LANG]??s.ja):k;if(typeof s!=='string')return s;
+  s=s.replace(/\{N\}/g,NAME[LANG]).replace(/\{ME\}/g,ME||(LANG==='zh'?'我':'わたし'));for(const x in v)s=s.split('{'+x+'}').join(v[x]);return crushTx(s)}
+function crushTx(t){if(REL!=='crush'||typeof t!=='string')return t;return t.replace(/元彼|元カレ|元恋人/g,'あの人').replace(/恋人の基本機能/g,'人としての基本').replace(/前任/g,'那個人').replace(/戀人的基本功能/g,'做人的基本')}
+function L(o){return crushTx((o[LANG]??o.ja).replace(/\{N\}/g,NAME[LANG]))}
 
 /* ================= data ================= */
 const FEELS=[["さみしい","寂寞"],["会いたい","想見他"],["悲しい","難過"],["くやしい","不甘心"],["むなしい","空虛"],["腹が立つ","生氣"],["ホッとした","鬆了一口氣"],["恥ずかしい","丟臉"],["不安","不安"],["自分を責めてる","在責怪自己"],["まだ好き","還喜歡他"],["よくわからない","說不清楚"]].map(([ja,zh])=>({ja,zh}));
@@ -2753,7 +2768,7 @@ Object.assign(TALK,{
 });
 
 /* ---------- STAGE 3：思い出フィルター ---------- */
-const FILT=[
+const FILT_DATE=[
  {e:"🎂",m:{ja:"誕生日、<br>サプライズしてくれた",zh:"生日那天，<br>給了我驚喜"},r:{ja:"……でも、私だって彼の誕生日を、<br>一生懸命お祝いしてたよね。",zh:"……可是，我也很用心<br>幫他慶祝過生日啊。"}},
  {e:"🌙",m:{ja:"毎晩、<br>「おやすみ」をくれた",zh:"每天晚上，<br>都說「晚安」"},r:{ja:"……私が先に送らないと、<br>来ない日もあった。",zh:"……但如果我不先傳，<br>有時候他根本不會傳。"}},
  {e:"😂",m:{ja:"一緒にいると、<br>すごく笑えた",zh:"在一起的時候，<br>笑得好開心"},r:{ja:"……場を盛り上げてたの、<br>だいたい私だった。",zh:"……炒熱氣氛的，<br>大多是我。"}},
@@ -2851,22 +2866,64 @@ const FILT=[
  {e:"💞",m:{ja:"「ありのままの君が好き」って<br>言ってくれた",zh:"他說<br>「喜歡原本的你」"},r:{ja:"……なのに、いつから私は<br>嫌われないために、自分を変え続けてたんだろう。",zh:"……可是，我是從什麼時候開始<br>為了不被討厭，一直改變自己的？"}}
 ];
 const FILT_A=[["でしょ。脳が盛ってたの。","對吧。是大腦幫他加分了。"],["はい、フィルター1枚はがれた。","好，撕掉一層濾鏡了。"],["実物、思ったより普通。","本人，比想像中普通。"],["それ、恋人なら最低ラインね。","那是當戀人的最低標準喔。"],["次回の恋愛、審査基準を上げてまいります。","下一次戀愛，審核標準要提高了。"],["思い出補正、おそるべし。","回憶濾鏡，太可怕了。"],["脳内ドラマ、ちょっと盛りすぎ。","腦內小劇場，加太多戲了。"],["はい、そこ再審査。","好，這條重新審查。"]].map(([ja,zh])=>({ja,zh}));
+let FILT=FILT_DATE;
+const FILT_CRUSH=[
+ {e:"💬",m:{ja:"毎日<br>LINEしてくれた",zh:"每天<br>都傳LINE給我"},r:{ja:"……でも、「付き合おう」は<br>一度もなかった。",zh:"……但是，「在一起吧」<br>一次也沒說過。"}},
+ {e:"🌙",m:{ja:"夜中に<br>「起きてる？」って来た",zh:"半夜傳來<br>「醒著嗎？」"},r:{ja:"……来るのは、<br>いつも夜だけだった。",zh:"……訊息，<br>永遠只在晚上來。"}},
+ {e:"🍻",m:{ja:"二人で<br>飲みに行った",zh:"兩個人<br>去喝酒"},r:{ja:"……誘ってくるのは、<br>いつも彼の都合がいい日。",zh:"……約的，<br>永遠是他方便的日子。"}},
+ {e:"👀",m:{ja:"私だけ<br>特別扱いしてくれた気がした",zh:"總覺得<br>他只對我特別"},r:{ja:"……「気がした」だけで、<br>はっきり言われたことはない。",zh:"……只是「覺得」而已，<br>他從來沒說清楚過。"}},
+ {e:"😳",m:{ja:"「かわいいな」って<br>言われた",zh:"他說<br>「你好可愛」"},r:{ja:"……言うだけ。<br>その先は、何も変わらなかった。",zh:"……只是說說。<br>之後，什麼都沒改變。"}},
+ {e:"🚶",m:{ja:"帰り道、<br>ずっと隣を歩いてくれた",zh:"回家的路上，<br>他一直走在我旁邊"},r:{ja:"……手はつながなかった。<br>理由は、聞けなかった。",zh:"……但沒有牽手。<br>原因，我問不出口。"}},
+ {e:"📸",m:{ja:"二人で<br>写真を撮った",zh:"兩個人<br>一起拍了照"},r:{ja:"……SNSには、<br>絶対に載せてくれなかった。",zh:"……但他絕對<br>不會放上社群。"}},
+ {e:"💭",m:{ja:"「彼女いないよ」って<br>言ってた",zh:"他說<br>「我沒有女朋友喔」"},r:{ja:"……「好きな人もいない」とは、<br>言ってなかった。",zh:"……他可沒說，<br>「也沒有喜歡的人」。"}},
+ {e:"🤝",m:{ja:"悩みを<br>全部話してくれた",zh:"他把煩惱<br>全部告訴我"},r:{ja:"……相談相手と好きな人は、<br>ちがうポジション。",zh:"……傾訴對象和喜歡的人，<br>是不同的位置。"}},
+ {e:"🎶",m:{ja:"好きな曲を<br>教えてくれた",zh:"他告訴我<br>他喜歡的歌"},r:{ja:"……私はその曲を毎日聴いた。<br>彼は、私の好きな曲を知らない。",zh:"……我每天都聽那首歌。<br>他卻不知道我喜歡什麼歌。"}},
+ {e:"📞",m:{ja:"突然<br>電話してきた",zh:"他突然<br>打電話來"},r:{ja:"……寂しいときだけ、<br>私を思い出してた。",zh:"……只有寂寞的時候，<br>才會想起我。"}},
+ {e:"🍜",m:{ja:"「今度ご飯行こう」って<br>言われた",zh:"他說<br>「下次一起吃飯吧」"},r:{ja:"……その「今度」、<br>まだ来てない。",zh:"……那個「下次」，<br>到現在還沒來。"}},
+ {e:"🥺",m:{ja:"「一緒にいると落ち着く」って<br>言われた",zh:"他說<br>「跟你在一起很放鬆」"},r:{ja:"……落ち着く人と、選ぶ人は、<br>別だったみたい。",zh:"……讓他放鬆的人，和他選擇的人，<br>好像不是同一個。"}},
+ {e:"🌃",m:{ja:"夜のドライブに<br>連れてってくれた",zh:"他帶我<br>去夜晚兜風"},r:{ja:"……行き先も、終わりの時間も、<br>決めるのはいつも彼。",zh:"……目的地、結束的時間，<br>決定的永遠是他。"}},
+ {e:"🫣",m:{ja:"目が合うと、<br>笑ってくれた",zh:"四目相對時，<br>他會對我笑"},r:{ja:"……誰とでも、目が合うと<br>笑う人だった。",zh:"……他是跟誰對上眼，<br>都會笑的人。"}},
+ {e:"🍫",m:{ja:"バレンタインのお返しを<br>くれた",zh:"他回了<br>情人節的禮物"},r:{ja:"……みんなにも、<br>同じものを返してた。",zh:"……他回給大家的，<br>都是一樣的東西。"}},
+ {e:"⏰",m:{ja:"返信が<br>早い日があった",zh:"有些日子<br>他回得很快"},r:{ja:"……早い日だけ覚えてて、<br>遅い日は数えてない。",zh:"……我只記得回得快的日子，<br>回得慢的，都沒算進去。"}},
+ {e:"🗓️",m:{ja:"「週末、空いてる？」って<br>聞かれた",zh:"他問我<br>「週末有空嗎？」"},r:{ja:"……当日、<br>「ごめん、やっぱ無理」が来た。",zh:"……當天，<br>傳來「抱歉，還是不行」。"}},
+ {e:"🌸",m:{ja:"「お前は特別」って<br>言われた",zh:"他說<br>「你是特別的」"},r:{ja:"……特別なら、なんで<br>名前のない関係のままだったの？",zh:"……如果特別，為什麼<br>一直是沒有名字的關係？"}},
+ {e:"🧊",m:{ja:"冷たい日のあとは、<br>急に優しかった",zh:"冷淡幾天之後，<br>他突然變得很溫柔"},r:{ja:"……その温度差に、<br>ずっと振り回されてた。",zh:"……我一直被那種溫差，<br>耍得團團轉。"}},
+ {e:"📱",m:{ja:"ストーリーに<br>すぐ反応してくれた",zh:"我的限動<br>他都馬上回應"},r:{ja:"……反応はくれる。<br>でも、会おうとはしない。",zh:"……回應是有。<br>但不會約見面。"}},
+ {e:"🎤",m:{ja:"私の話を<br>覚えててくれた",zh:"他記得<br>我說過的話"},r:{ja:"……覚えてるのに、<br>気持ちには答えてくれなかった。",zh:"……明明都記得，<br>卻不回應我的心意。"}},
+ {e:"🤭",m:{ja:"冗談で<br>「付き合っちゃう？」って言われた",zh:"他開玩笑說<br>「要不要在一起？」"},r:{ja:"……冗談にしたのは、<br>彼のほう。",zh:"……把它變成玩笑的，<br>是他。"}},
+ {e:"📲",m:{ja:"寝落ち通話<br>してた",zh:"我們講電話<br>講到睡著"},r:{ja:"……朝になったら、<br>いつもの「ただの友だち」。",zh:"……天一亮，<br>又是平常的「普通朋友」。"}},
+ {e:"☕",m:{ja:"カフェで<br>何時間も話した",zh:"在咖啡廳<br>聊了好幾個小時"},r:{ja:"……話せることと、<br>向き合ってくれることは、別。",zh:"……能聊天，<br>和願意面對我，是兩回事。"}},
+ {e:"🫂",m:{ja:"別れ際に<br>ハグしてくれた",zh:"道別時<br>他抱了我"},r:{ja:"……ハグの意味、<br>最後まで説明してくれなかった。",zh:"……那個擁抱的意思，<br>他到最後都沒解釋。"}},
+ {e:"🎂",m:{ja:"0時ちょうどに<br>「おめでとう」が来た",zh:"零點整<br>傳來「生日快樂」"},r:{ja:"……0時だけ。<br>その日、会いには来なかった。",zh:"……只有零點。<br>那天，他沒來見我。"}},
+ {e:"🎮",m:{ja:"ゲームで<br>ずっと一緒に遊んだ",zh:"一起<br>打了好久的電動"},r:{ja:"……オンラインでは近い。<br>現実では遠い。",zh:"……線上很近。<br>現實很遠。"}},
+ {e:"🍺",m:{ja:"酔うと<br>「好きかも」って言われた",zh:"喝醉時他說<br>「好像喜歡你」"},r:{ja:"……シラフでは、<br>一度も言ってくれなかった。",zh:"……清醒的時候，<br>一次也沒說過。"}},
+ {e:"🙈",m:{ja:"嫉妬されて<br>うれしかった",zh:"他吃醋，<br>我好開心"},r:{ja:"……嫉妬はするのに、付き合おうとはしない。<br>それ、ずるくない？",zh:"……會吃醋，卻不說要在一起。<br>這樣不是很狡猾嗎？"}},
+ {e:"💤",m:{ja:"「疲れた」って<br>私に甘えてきた",zh:"他說「好累」，<br>來找我撒嬌"},r:{ja:"……癒やし担当で、<br>彼女候補じゃなかった。",zh:"……我是療癒擔當，<br>不是女友候補。"}},
+ {e:"🛍️",m:{ja:"私の好みを<br>聞いてきた",zh:"他問我<br>喜歡什麼"},r:{ja:"……聞くだけ聞いて、<br>何も始まらなかった。",zh:"……問完就沒了，<br>什麼都沒開始。"}},
+ {e:"📍",m:{ja:"「位置情報、共有しよ」って<br>言われた",zh:"他說<br>「我們分享定位吧」"},r:{ja:"……居場所はわかるのに、<br>気持ちはわからなかった。",zh:"……知道他在哪裡，<br>卻不知道他在想什麼。"}},
+ {e:"🚕",m:{ja:"終電がなくなって、<br>一緒にいた",zh:"錯過末班車，<br>我們待在一起"},r:{ja:"……次の日、<br>何もなかったみたいにされた。",zh:"……隔天，<br>他表現得像什麼都沒發生。"}},
+ {e:"🌟",m:{ja:"「お前がいてよかった」って<br>言われた",zh:"他說<br>「還好有你在」"},r:{ja:"……いてよかった人じゃなくて、<br>選ばれたかった。",zh:"……我不想當「還好有在」的人，<br>我想被選擇。"}},
+ {e:"🔁",m:{ja:"距離を置いても、<br>また連絡してきた",zh:"我拉開距離，<br>他又來聯絡"},r:{ja:"……戻ってくるのは、<br>私が離れたときだけ。",zh:"……他只會在我離開的時候，<br>才回來。"}},
+ {e:"🧡",m:{ja:"結局、<br>ずっと好きだった",zh:"結果，<br>我一直都喜歡他"},r:{ja:"……うん。でも、名前のない関係に、<br>私の時間を全部あげなくていい。",zh:"……嗯。但是，不用把我所有的時間，<br>都給一段沒有名字的關係。"}}
+];
 const FP=(ja,zh)=>({ja,zh});
 const F_ANS=[{e:'🔍',b:FP('それはあるかも','好像有可能'),m:null},{e:'🤔',b:FP('わからない','不知道')},{e:'🙄',b:FP('いや、そもそもしてもらってない！','不對，他根本沒為我做過！')}];
 const F_ZERO=[FP('えっ、ゼロ！？<br>フィルターはがす前に、<br>思い出そのものが存在してない！！','咦，零！？<br>還沒撕濾鏡，<br>回憶本身就不存在啊！！'),FP('待って待って。<br>美化どころか、素材がないじゃん！','等等等等。<br>別說美化了，根本沒有素材啊！'),FP('それ、思い出じゃなくて<br>あんたの「こうだったらいいな」だったんだ…！','那不是回憶，<br>是你的「如果是這樣就好了」啊…！'),FP('ゼロからここまで好きでいられたの、<br>逆にすごいよ、あんた。','從零開始還能喜歡到這種程度，<br>你反而很厲害耶。'),FP('よし、次の人には<br>これ、標準装備でお願いします。','好，下一個人，<br>這個請列為標準配備。'),FP('脳内で勝手に<br>彼の好感度、上げてあげてたんだね…。<br>やさしすぎ。','原來是你在腦內<br>自動幫他加好感度啊…。<br>你也太溫柔了。')];
 const F_UNK=[FP('わからなくていいよ。<br>思い出は、急いで答えを出さなくていい。','不知道也沒關係。<br>回憶，不用急著找答案。'),FP('うん、保留。<br>また今度、思い出したときでいい。','嗯，先保留。<br>下次想起來的時候再說。'),FP('わからない、も正直な答え。','不知道，也是很誠實的答案。')];
 const F_GIFT=[FP('あの人を好きだった私も、私の味方でいていい。','喜歡過那個人的我，也可以站在我這邊。'),FP('返事がこない夜にも、私の価値は減らない。','就算等不到回覆的夜晚，我的價值也不會減少。'),FP('幸せだった記憶は、幸せになる権利を奪わない。','幸福過的回憶，不會奪走我變幸福的權利。'),FP('好きだったことと、傷ついたこと。どちらも本当でいい。','喜歡過，也受過傷。兩個都是真的，也沒關係。'),FP('恋が終わっても、私の魅力に最終回はない。','戀愛結束了，我的魅力也沒有完結篇。'),FP('あの人が見ていない時間にも、私はちゃんと輝いている。','就算他沒在看，我也一直在發光。'),FP('あの日の私を笑わせたのは、私の笑う力でもあった。','讓那天的我笑出來的，也有我自己會笑的力量。'),FP('「戻りたい」は、今日を捨てる命令じゃない。','「好想回去」，不是要我放棄今天的命令。'),FP('思い出は残せる。でも、未来まで預けなくていい。','回憶可以留著。但未來，不用一起交出去。'),FP('好きなままでも、今日は私を大切にしていい。','就算還喜歡，今天也可以好好珍惜自己。'),FP('わたしが恋しかったのは、彼だけじゃなく、あの頃の希望かもしれない。','我想念的，也許不只是他，而是那時候的希望。'),FP('過去の恋に、これからの私の全部を決めさせない。','不讓過去的戀愛，決定接下來的我的全部。')];
 const FSKEY='lastsong_filt_seen_v1',FILT_N=10;
-function filtSeen(){try{return JSON.parse(localStorage.getItem(FSKEY)||'[]')}catch(e){return[]}}
+function fsKey(){return FSKEY+(REL==='crush'?'_crush':'')}
+function filtSeen(){try{return JSON.parse(localStorage.getItem(fsKey())||'[]')}catch(e){return[]}}
 function filtPick(ex,n){ex=ex||[];n=n||FILT_N;const th=FS?FS.th:0;const inTh=i=>(!th||FILT[i].t===th-1)&&!FILT[i].last;let seen=filtSeen();
   let pool=FILT.map((_,i)=>i).filter(i=>inTh(i)&&!ex.includes(i)&&!seen.includes(i));
   if(pool.length<FILT_N){const all=FILT.map((_,i)=>i).filter(i=>inTh(i)&&!ex.includes(i));if(pool.length<all.length){seen=seen.filter(i=>!all.includes(i));pool=all}}
   if(!pool.length)pool=FILT.map((_,i)=>i).filter(i=>!ex.includes(i));
   for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]]}
-  const pick=pool.slice(0,n);try{localStorage.setItem(FSKEY,JSON.stringify([...new Set(seen.concat(pick))]))}catch(e){}
+  const pick=pool.slice(0,n);try{localStorage.setItem(fsKey(),JSON.stringify([...new Set(seen.concat(pick))]))}catch(e){}
   return pick}
 let FS=null;
 function buildFilter(){
+  FILT=REL==='crush'?FILT_CRUSH:FILT_DATE;
   FS={i:0,deck:[],th:0,started:false,ans:null,cnt:[0,0,0],gift:null,mk:0};S.filter={a:0,keep:[]};
   filterIntro();$('mg3Next').style.display='none';$('mg3Hud').textContent='';filterMoreBtn(false);
 }
@@ -3101,14 +3158,27 @@ function stPop(e){e.classList.remove('pp');e.offsetHeight;e.classList.add('pp')}
   const fit=()=>{const h=vv.height,kb=window.innerHeight-h>120;document.documentElement.style.height=kb?h+'px':'';document.body.style.height=kb?h+'px':'';document.body.classList.toggle('kb',kb);window.scrollTo(0,0);
     if(kb){const a=document.activeElement;if(a&&a.matches('input,textarea'))setTimeout(()=>a.scrollIntoView({block:'center',behavior:'smooth'}),60)}};
   vv.addEventListener('resize',fit);vv.addEventListener('scroll',()=>{if(document.body.classList.contains('kb'))window.scrollTo(0,0)});})();
+
+const SUBJ_ORIG=null;let _relSaved=null;
+function applyRel(){
+  if(!_relSaved)_relSaved={s5:SUBJ[5],s6:SUBJ[6],k0:KUSO[0]};
+  if(REL==='crush'){
+    SUBJ[5]={s:{ja:"気持ちをはっきり言う",zh:"會把心意說清楚"},w:{ja:"次の人は、<b>気持ちをはっきり言ってくれる</b>。",zh:"下一個人，<b>會把心意說清楚</b>。"}};
+    SUBJ[6]={s:{ja:"思わせぶりをしない",zh:"不搞曖昧"},w:{ja:"次の人は、<b>思わせぶりをしない人</b>。",zh:"下一個人，<b>是不會搞曖昧的人</b>。"}};
+    KUSO[0]={s:{ja:"本命じゃなかった",zh:"我不是他的本命"},n:{ja:"置き去り感",zh:"被晾著的感覺"},r:{ja:"本命じゃなかったのは、あんたの価値のせいじゃない。<br>はっきりしなかったのは、あいつの問題。",zh:"不是本命，不是因為你的價值不夠。<br>不把話說清楚，是他的問題。"}};
+  }else{SUBJ[5]=_relSaved.s5;SUBJ[6]=_relSaved.s6;KUSO[0]=_relSaved.k0}
+}
+function setRel(r){REL=r;applyRel();document.querySelectorAll('.lfRel button').forEach((b,i)=>b.classList.toggle('on',(i===0)===(r==='date')));$('lfDurL').innerHTML=T('lf_dur');
+  try{const d=JSON.parse(localStorage.getItem('lastsong_life_v1')||'null')||{};d.rel=r;localStorage.setItem('lastsong_life_v1',JSON.stringify(d))}catch(e){}}
 function buildLife(){
   const old=loadLife()||{};
   $('lfBody').innerHTML=`<div class="lfC">
    <div class="mikaSay lfSay">${T('lf_mika')}</div>
+   <div class="lfRel"><button class="${REL==='date'?'on':''}" onclick="setRel('date')">💑 ${Q('付き合ってた','交往過')}</button><button class="${REL==='crush'?'on':''}" onclick="setRel('crush')">🌊 ${Q('片思い・曖昧な関係','單戀・暈船')}</button></div>
    <div class="lfTwo"><label><small>${Q('あなたの名前','你的名字')}</small><input class="name" id="lfMe" maxlength="12" enterkeyhint="next" onkeydown="if(event.key==='Enter'){event.preventDefault();$('lfHe').focus()}" value="${old.me||''}" placeholder="${T('lf_me_ph')}"></label>
     <label><small>${Q('彼の名前','他的名字')}</small><input class="name" id="lfHe" maxlength="12" enterkeyhint="done" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" value="${NAME.ja==='あの人'?'':NAME.ja}" placeholder="${T('name_ph')}"></label></div>
    <div class="lfLine2"><small>${T('lf_age')}</small><div class="lfRow">${stp('lfAge',old.age||25,10,99)}<span>${T('lf_old')}</span></div></div>
-   <div class="lfLine2"><small>${T('lf_dur')}</small><div class="lfRow">${stp('lfY',old.y??0,0,60)}<span>${T('lf_y')}</span>${stp('lfM',old.m??0,0,11)}<span>${T('lf_m')}</span></div></div>
+   <div class="lfLine2"><small id="lfDurL">${T('lf_dur')}</small><div class="lfRow">${stp('lfY',old.y??0,0,60)}<span>${T('lf_y')}</span>${stp('lfM',old.m??0,0,11)}<span>${T('lf_m')}</span></div></div>
    <p class="lfNote">🔒 ${T('lf_lead')}</p>
    <button class="btn" onclick="lifeStep2()">${T('lf_go2')}</button></div>`;
   $('lfNext').style.display='none';
@@ -3122,7 +3192,7 @@ function lifeStep2(){
   ME=me?esc(me):'';if(he){setName(he);$('nameIn').value=he}
   const old=loadLife()||{};
   const himYears=Math.max(1,Math.ceil(mo/12));
-  S.lifeData={me:me,age,y,m,mo:auto1?Math.max(1,Math.round(age*12*.01)):mo,auto1,lines:(old.age===age&&old.lines)?old.lines:Array(age).fill(''),next:old.next||''};
+  S.lifeData={rel:REL,me:me,age,y,m,mo:auto1?Math.max(1,Math.round(age*12*.01)):mo,auto1,lines:(old.age===age&&old.lines)?old.lines:Array(age).fill(''),next:old.next||''};
   saveLife();lifeCard(0);
 }
 let LM=null;
@@ -3529,13 +3599,13 @@ function togClean(i,el){let st={};try{st=JSON.parse(localStorage.getItem('ls_cle
   try{localStorage.setItem('ls_clean',JSON.stringify(st))}catch(e){}}
 
 /* ================= 🎡 ミニゲーム館 ================= */
-const Q=(ja,zh)=>LANG==='zh'?zh:ja;
+const Q=(ja,zh)=>crushTx(LANG==='zh'?zh:ja);
 const QN=s=>s.replace(/\{N\}/g,NAME[LANG]);
 const arME=()=>ME||Q('わたし','我');
 const arRnd=a=>a[Math.floor(Math.random()*a.length)];
 const arShuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
 const P=(ja,zh)=>({ja,zh});
-const arL=o=>QN(LANG==='zh'?o.zh:o.ja);
+const arL=o=>crushTx(QN(LANG==='zh'?o.zh:o.ja));
 const ARKEY='lastsong_arcade_v1';
 function arLoad(){try{return JSON.parse(localStorage.getItem(ARKEY)||'{}')}catch(e){return AR_MEM}}
 let AR_MEM={};
@@ -4422,7 +4492,7 @@ function lifeRefresh(){
   window.peekScroll=kick;
 })();
 
-$('vnMkImg').src=mkSrc('normal');$('vnMkImg').dataset.f='normal';$('herTitle').src=HER[0];$('herDawn').src=HER[1];
+try{applyRel()}catch(e){}$('vnMkImg').src=mkSrc('normal');$('vnMkImg').dataset.f='normal';$('herTitle').src=HER[0];$('herDawn').src=HER[1];
 applyLang();
 </script>
 </body>
