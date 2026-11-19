@@ -203,6 +203,25 @@ input[type=range]{width:100%;accent-color:var(--neon)}
 .lmBig small{font-size:26px}
 .lmNext{margin-top:14px;animation:lmIn .6s ease;cursor:default}
 #mirenBtn,#sosBtn{display:none!important}
+.ttCatch{font-size:min(21px,5.4vw);line-height:1.7;margin:12px 0 0;color:#fff;font-weight:700;text-shadow:0 0 14px rgba(255,143,192,.55)}
+.ttPv{display:flex;gap:8px;margin:0 0 4px}.ttPv div{flex:1;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:8px 4px;text-align:center}.ttPv b{display:block;font-size:22px;line-height:1.3}.ttPv span{font-size:11.5px;color:var(--dim);white-space:nowrap}
+.dawn-on #vn{background:linear-gradient(180deg,#8fb8ff 0%,#ff9fb0 58%,#ffd6a5 100%)}
+.dawn-on #vnBox{background:rgba(255,255,255,.86);border-color:rgba(255,120,170,.55);box-shadow:0 8px 30px rgba(160,80,122,.25)}
+.dawn-on #vnText{color:#3a2140}.dawn-on #vnBox.narr #vnText{color:#6b4a6b}.dawn-on #vnBox::after,.dawn-on #vnNext{color:#a0507a}
+.dawn-on #lm{background:linear-gradient(180deg,#8fb8ff 0%,#ff9fb0 58%,#ffd6a5 100%);color:#3a2140}
+.dawn-on #lm p,.dawn-on #lm h2,.dawn-on #lm h3,.dawn-on #lm div:not(.btn),.dawn-on #lm span,.dawn-on #lm b,.dawn-on #lm small{color:#3a2140;text-shadow:0 0 10px rgba(255,255,255,.7)}
+.dawn-on #lmFin,.dawn-on #lmFin.bloom{background:linear-gradient(180deg,#8fb8ff 0%,#ff9fb0 58%,#ffd6a5 100%)}
+.dawn-on #lmFin .fgArt{filter:none!important}
+.dawn-on #lmFin .fgCnt,.dawn-on #lmFin .fgCnt b,.dawn-on #lmFin .finCap em{color:#a0507a!important}
+.dawn-on #credits{background:linear-gradient(180deg,#8fb8ff 0%,#ff9fb0 58%,#ffd6a5 100%)}
+.dawn-on #credits,.dawn-on #credits *{color:#3a2140!important;text-shadow:0 0 10px rgba(255,255,255,.7)!important}
+.dawn-on #s0{color:#3a2140}
+.dawn-on #s0 h1{color:#fff;text-shadow:0 0 10px #ff6fae,0 0 26px #ff6fae,0 2px 0 rgba(160,60,110,.5)}
+.dawn-on #s0 .neonsign{color:#b0306a;text-shadow:0 0 8px rgba(255,255,255,.8)}
+.dawn-on #s0 .ttCatch{color:#3a2140;text-shadow:0 0 12px rgba(255,255,255,.8)}
+.dawn-on #s0 .mincho{color:#3a2140}
+.dawn-on #s0 .ttPv div{background:rgba(255,255,255,.5);border-color:rgba(255,255,255,.85)}.dawn-on #s0 .ttPv span{color:#6b4a6b}
+.dawn-on #langBtn,.dawn-on #bgmBtn{color:#3a2140;border-color:rgba(58,33,64,.35);background:rgba(255,255,255,.5)}
 .startBtn{font-size:19px;padding:18px;animation:pulse 1.8s infinite;background:linear-gradient(90deg,#ffd77a,#ff8fc0,#c69bff)}
 .startBtn small{display:block;font-size:11px;font-weight:500;opacity:.75;margin-top:3px}
 .toast{position:fixed;z-index:90;left:50%;bottom:calc(env(safe-area-inset-bottom) + 90px);transform:translateX(-50%);background:#30283b;color:#fff;border-radius:999px;padding:10px 18px;font-size:13px;font-weight:700;box-shadow:0 8px 20px rgba(0,0,0,.3);animation:tfade 2.6s forwards;pointer-events:none;white-space:nowrap;max-width:92vw;overflow:hidden;text-overflow:ellipsis}
@@ -737,6 +756,7 @@ body.kb .scroll{padding-bottom:40vh}
 .drAlert .bar i{flex:1;height:10px;border-radius:5px;background:rgba(255,255,255,.15);overflow:hidden}.drAlert .bar u{display:block;height:100%;background:#ff5f7a}.drAlert .bar.me u{background:var(--gold)}
 @keyframes drShk{20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(4px)}}
 #trlTx .drZ2{animation:drZ2 2.4s ease-out forwards}@keyframes drZ2{from{transform:scale(1.5)}to{transform:scale(.8)}}
+.drGn .chip{position:relative;overflow:visible}.drNew{position:absolute;right:-5px;top:-9px;font-style:normal;font-size:9.5px;font-weight:900;letter-spacing:.04em;background:#ff3d7f;color:#fff;border-radius:99px;padding:2px 7px;box-shadow:0 2px 8px rgba(255,61,127,.6);animation:drNewB 1.2s ease-in-out infinite;pointer-events:none}.drNew.in{position:static;display:inline-block;margin-right:6px;vertical-align:middle}@keyframes drNewB{50%{transform:scale(1.12)}}
 .drGn{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}.drGn .chip{text-align:center;margin:0;white-space:nowrap;font-size:13px;padding-left:6px;padding-right:6px}
 .drRes{border-radius:16px;padding:16px 14px;margin:8px 0;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.4)}
 .drRes small{display:block;font-size:10px;letter-spacing:.2em;opacity:.8}.drRes b{display:block;font-size:min(22px,5.6vw);line-height:1.5;margin:8px 0}.drRes p{margin:0;font-size:14px;line-height:1.8}
@@ -1256,6 +1276,16 @@ body.theEnd .skipFix,body.theEnd #skipBtn{display:none!important}
 .mmInW .mmIn::placeholder,.mmInW .lcIn::placeholder{color:#9a8aa8}
 .mmCur{position:absolute;right:14px;top:50%;width:2px;height:55%;margin-top:-13px;background:#ff5fa8;border-radius:2px;animation:mmBl 1s steps(1) infinite;pointer-events:none}
 .mmInW:focus-within .mmCur{display:none}@keyframes mmBl{0%,49%{opacity:1}50%,100%{opacity:0}}
+.eraPick{text-align:center;padding:6px 0}.eraPick h3{font-size:22px;margin:4px 0 6px;color:#fff}.eraPick p{font-size:16px;line-height:1.9;color:#fff;margin:10px 0 12px}
+.eraBig{display:flex;flex-direction:column;gap:10px}.eraBig button{display:flex;align-items:center;gap:12px;min-height:64px;padding:10px 18px;border-radius:18px;border:1px solid rgba(255,215,122,.5);background:linear-gradient(135deg,rgba(255,215,122,.16),rgba(255,95,168,.16));color:#fff;font:inherit;cursor:pointer;text-align:left;transition:transform .12s}
+.eraBig button:active{transform:scale(.97)}.eraBig b{font-size:19px;flex:1}.eraBig small{font-size:13px;color:var(--dim)}.eraBig i{font-style:normal;color:var(--gold);font-size:14px;width:1.2em;text-align:center}
+.eraTabs{position:sticky;top:0;z-index:6;background:linear-gradient(180deg,rgba(26,10,46,.98) 80%,rgba(26,10,46,0));padding:4px 0 8px;transition:padding .7s cubic-bezier(.3,.9,.3,1)}
+.eraTabs button{transition:padding .7s cubic-bezier(.3,.9,.3,1),box-shadow .7s}.eraTabs button b,.eraTabs button small{transition:font-size .7s cubic-bezier(.3,.9,.3,1)}
+.eraTabs.big{gap:5px;overflow:visible;padding:8px 0 10px}.eraTabs.big button{flex:1 1 0;min-width:0;padding:22px 2px;box-shadow:0 0 16px rgba(255,215,122,.4);border-color:var(--gold)}.eraTabs.big button b{font-size:min(14px,3.6vw);white-space:nowrap}.eraTabs.big button small{font-size:11px}
+#lfBody .eraTabs{overflow:visible;gap:5px}#lfBody .eraTabs button{flex:1 1 0;min-width:0;padding-left:2px;padding-right:2px}#lfBody .eraTabs button b{font-size:min(12.5px,3.3vw);white-space:nowrap}#lfBody .eraTabs.big button b{font-size:min(14px,3.6vw)}
+.eraTabs.pick button{animation:eraPk 1.6s ease-in-out infinite}.eraTabs.pick button:nth-child(2){animation-delay:.15s}.eraTabs.pick button:nth-child(3){animation-delay:.3s}.eraTabs.pick button:nth-child(4){animation-delay:.45s}.eraTabs.pick button:nth-child(5){animation-delay:.6s}@keyframes eraPk{50%{transform:translateY(-3px);box-shadow:0 0 22px rgba(255,215,122,.7)}}
+.eraHint{text-align:center;font-size:12px;color:var(--gold);margin:-2px 0 6px;transition:opacity .8s,max-height .8s,margin .8s;max-height:30px;overflow:hidden;animation:eraHintB 1.1s ease-in-out 3}.eraHint.out{opacity:0;max-height:0;margin:0}
+@keyframes eraHintB{50%{transform:translateY(-3px)}}
 .eraTabs{display:flex;gap:6px;margin:0 0 8px;overflow-x:auto}.eraTabs button{flex:1 0 auto;min-width:62px;border-radius:12px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.06);color:#fff;font:inherit;padding:6px 8px;cursor:pointer;display:flex;flex-direction:column;align-items:center;line-height:1.3}
 .eraTabs button b{font-size:13px}.eraTabs button small{font-size:10px;color:var(--dim)}.eraTabs button.on{background:linear-gradient(135deg,rgba(255,215,122,.35),rgba(255,95,168,.35));border-color:var(--gold)}
 .mmSug{justify-content:center;margin:0 0 8px}.mmSug .chip{font-size:13px}.mmTg{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:2px 0 8px}.mmTg .mmUnk{font-size:12px;padding:5px 10px;margin:0}
@@ -1355,13 +1385,13 @@ body.theEnd .skipFix,body.theEnd #skipBtn{display:none!important}
   <!-- 0 TITLE -->
   <section class="scene on" id="s0">
     <div class="grow"></div>
-    <div class="neonsign">CLUB ◇ MEMORIES</div>
+    <div class="neonsign" style="font-size:11px;letter-spacing:.34em">A BREAKUP RECOVERY GAME</div>
     <h1 data-i="title"></h1>
-    <p class="center lead" style="margin-top:14px" data-i="title_sub"></p>
+    <p class="center mincho ttCatch" data-i="title_sub"></p>
     
     <div class="grow"></div>
     <div style="display:flex;align-items:center;gap:10px;justify-content:center">
-      <img class="her" id="herTitle" style="height:170px">
+      <img class="her" id="herTitle" style="height:160px">
       <p class="mincho" style="font-size:14px;line-height:1.9;margin:0" data-i="concept"></p>
     </div>
     <div class="grow"></div>
@@ -1832,12 +1862,15 @@ const I_CRUSH={
 };
 const I={
  title:{ja:"ラストソング",zh:"最後一首歌"},
- title_sub:{ja:"未練、あります。<br>でも、幸せにもなりたい。",zh:"還有留戀。<br>但是，也想要幸福。"},
- concept:{ja:"あの恋、最高だった。<br>……って、ちょっと盛ってない？<br><br>泣いて、笑って、<br>思い出にツッコむ。<br>失恋した夜の、<br>ちょっと変わったゲーム。",zh:"那段戀愛，超棒的。<br>……欸，是不是有點美化了？<br><br>哭一哭，笑一笑，<br>吐槽一下回憶。<br>失戀的夜晚，<br>一個有點奇怪的遊戲。"},
+ title_sub:{ja:"まだ好き。<br>でも、もう泣きたくない。",zh:"還喜歡。<br>但是，不想再哭了。"},
+ pv1:{ja:"未練をつかむ",zh:"抓住留戀"},
+ pv2:{ja:"恋を見直す",zh:"重新檢視戀愛"},
+ pv3:{ja:"次の人生へ",zh:"前往下一段人生"},
+ concept:{ja:"笑って、泣いて、<br>未練を手放す。<br>失恋から立ち直るための<br>体験型ゲーム。",zh:"笑一笑、哭一哭，<br>把留戀放下。<br>幫你走出失戀的<br>體驗型遊戲。"},
  name_label:{ja:"好きだった人の名前（あだ名でも）",zh:"喜歡過的人的名字（暱稱也可以）"},
  name_ph:{ja:"あの人",zh:"那個人"},
- enter:{ja:"今夜のラストソングをはじめる 🍸",zh:"開始今晚的最後一首歌 🍸"},
- enter_sub:{ja:"約15分 ・ 途中でやめてもOK",zh:"約15分鐘 ・ 中途停下也OK"},
+ enter:{ja:"💔 失恋からの脱出をはじめる",zh:"💔 開始逃離失戀"},
+ enter_sub:{ja:"約15分・自分のペースで遊べます",zh:"約15分鐘・可以照自己的步調玩"},
  to_garden:{ja:"🌱 AFTER. の旅へ（{C}日分の記録）",zh:"🌱 前往 AFTER. 的旅程（{C}天的紀錄）"},
  next:{ja:"次へ",zh:"下一步"},
  c1_t:{ja:"いまの気持ちの天気",zh:"現在的心情天氣"},
@@ -2611,13 +2644,13 @@ function delFriend(i){const a=loadF();a.splice(i,1);saveF(a);renderFriend()}
 const J=(ja,zh,o={})=>Object.assign({t:{ja,zh}},o);
 const CUTS={
  pro:{club:true,lines:[
-  J("私の心には、<br>ひとつのお店があった。","我的心裡，<br>曾經有一家店。",{scene:'club',auto:2300}),
-  J("あの人は、わたしのなかの<br><b>No.1</b>だった。","那個人，曾是我心裡的<br><b>No.1</b>。",{scene:'club',auto:2500}),
-  J("私は、何度も会いに行った。","我一次又一次地，去見他。",{scene:'club',auto:2000}),
-  J("でも、ある日。","但是，有一天。",{scene:'club',auto:1400}),
-  J("閉店しました。","打烊了。",{scene:'out',st:'big',fx:'shake',auto:2000}),
-  J("……さて。","……那麼。",{scene:'spot',auto:1300}),
-  J("今度は、わたしが<br>自分の人生を<br><b>No.1</b>にする番。","這一次，換我把<br>自己的人生<br>放在<b>No.1</b>。",{scene:'spot',st:'big',auto:2800}),
+  J("別れたのに、<br>まだ好き。","明明分手了，<br>卻還是喜歡。",{scene:'spot',auto:2200}),
+  J("楽しかった思い出ばかり、<br>何度も再生してしまう。","總是只把快樂的回憶，<br>一遍又一遍地重播。",{scene:'spot',auto:2600}),
+  J("私の心の中では、<br>あの人がずっと<b>No.1</b>だった。","在我心裡，<br>那個人一直是<b>No.1</b>。",{scene:'club',auto:2900}),
+  J("でも、もう<br>その恋は終わった。","但是，<br>那段戀愛已經結束了。",{scene:'out',st:'big',fx:'shake',auto:2300}),
+  J("さて。いつまであの人を<br><b>No.1</b>にしておく？","那麼。要讓那個人<br>當<b>No.1</b>到什麼時候？",{scene:'spot',auto:2500}),
+  J("今度は、わたしが<br>自分の人生を<br><b>No.1</b>にする番。","這一次，換我把<br>自己的人生<br>放在<b>No.1</b>。",{scene:'spot',st:'big',auto:2700}),
+  J("今夜は、笑いながら<br>未練を片づけよう。","今晚，就一邊笑，<br>一邊把留戀收拾乾淨吧。",{scene:'spot',auto:2500}),
   J("ラストソング","最後一首歌",{scene:'title',st:'huge',fx:'flash',auto:2200})]},
  proRain:{rain:true,lines:[
   J("午前2時。<br>雨。","凌晨兩點。<br>下著雨。"),
@@ -2747,7 +2780,7 @@ function playCredits(done){
   c.classList.add('on');clearTimeout(credT);credT=setTimeout(endCredits,30500);
 }
 function endCredits(){if(!credDone)return;clearTimeout(credT);$('credits').classList.remove('on');const d=credDone;credDone=null;d()}
-function startStory(){setName($('nameIn').value.trim());playCut('pro',()=>talk('meet',()=>go(20)))}
+function startStory(){try{dawnOff()}catch(e){}setName($('nameIn').value.trim());playCut('pro',()=>talk('meet',()=>go(20)))}
 
 /* danmaku */
 let dmTimers=[];
@@ -2787,7 +2820,7 @@ function buildDawn(){
   renderCustom('actsC');$('actsCIn').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();addCustom('actsC')}}}
 
 /* end */
-function ending(){S.m2=+$('m2').value;talk('fin',()=>talk('encore',()=>{AR.story='main';openTrailer(()=>finalBouquet(()=>{try{localStorage.setItem(CLEARKEY,'1')}catch(e){}document.body.classList.remove('theEnd');if(typeof dawnOff==='function'){try{dawnOff()}catch(e){}}_go(0);collBtnUpd()},true))}))}
+function ending(){S.m2=+$('m2').value;talk('fin',()=>talk('encore',()=>{AR.story='main';openTrailer(()=>finalBouquet(()=>{try{localStorage.setItem(CLEARKEY,'1')}catch(e){}document.body.classList.remove('theEnd');try{dawnHome()}catch(e){}_go(0);collBtnUpd()},true))}))}
 function renderEnd(){
   const diff=S.m1-S.m2,v={A:S.m1,B:S.m2};
   const mood=(S.m1==null||isNaN(diff))?'':diff>0?T('mood_down',v):diff===0?T('mood_same',v):T('mood_up',v);
@@ -3893,8 +3926,13 @@ function lifeStep2(){
   const old=loadLife()||{};
   const himYears=Math.max(1,Math.ceil(mo/12));
   S.lifeData={rel:REL,me:me,age,y,m,mo:auto1?Math.max(1,Math.round(age*12*.01)):mo,auto1,lines:(old.age===age&&old.lines)?old.lines:Array(age).fill(''),mems:[],memSeq:old.memSeq||0,next:old.next||''};
-  saveLife();lifeCard((old.age===age&&old.lines)?0:0);
+  saveLife();lifeEraPick();
 }
+const ERA_NM=[["幼少期","幼年期"],["思春期","思春期"],["青春期","青春期"],["20代前半","20代前半"],["今まで","到現在"]];
+function lifeEraPick(){const d=S.lifeData,CLt=chapList(d.age);$('lfNext').style.display='none';
+  $('lfBody').innerHTML=`<div class="eraTabs big pick" id="eraTabs">${CLt.map(c=>`<button onclick="LC_ERAIN=1;lifeCard(${eraDef(c)-1})"><b>${LANG==='zh'?ERA_NM[c.n-1][1]:ERA_NM[c.n-1][0]}</b><small>${c.from}〜${c.to}</small></button>`).join('')}</div>
+   <div class="eraPick"><p>☝️ ${Q('どの時期から書く？<br>覚えているところからでOK。','要從哪個時期開始寫？<br>從記得的地方開始就好。')}</p></div>`;$('lfBody').scrollTop=0}
+let LC_ERAIN=0;
 function lifePct(d){if(!d||!d.age)return null;const A=d.age,auto=d.auto1||!(d.mo>0);
   const Y=auto?1:Math.min(A,Math.max(.1,Math.round(d.mo/12*10)/10));
   const p=auto?Math.min(100,100/A):Math.min(100,d.mo/(A*12)*100),f=x=>x<1?x.toFixed(2):x.toFixed(1);
@@ -4103,7 +4141,8 @@ function lifeCard(i){
   const filled=d.lines.filter(x=>x&&x.trim()).length;
   const CLt=chapList(d.age),ERA=[["幼少期","幼年期"],["思春期","思春期"],["青春期","青春期"],["20代前半","20代前半"],["今まで","到現在"]];
   const tabs=`<div class="eraTabs">${CLt.map(c=>`<button class="${a>=Math.max(c.from,1)&&a<=c.to?'on':''}" onclick="lcSave();lifeCard(${eraDef(c)-1})"><b>${LANG==='zh'?ERA[c.n-1][1]:ERA[c.n-1][0]}</b><small>${c.from}〜${c.to}</small></button>`).join('')}</div>`;
-  $('lfBody').innerHTML=tabs+`<div class="lcTop"><span>${T('lc_prog',{A:a,T:d.age,F:filled})}</span><button onclick="lifeListView()">${T('lc_list')}</button></div>
+  const eraIn=LC_ERAIN;LC_ERAIN=0;
+  $('lfBody').innerHTML=tabs.replace('class="eraTabs"','class="eraTabs'+(eraIn?' big':'')+'" id="eraTabs"')+(eraIn?`<p class="eraHint" id="eraHint">☝️ ${Q('いつでも、好きな時期に切り替えられるよ','隨時都可以切換到想寫的時期')}</p>`:'')+`<div class="lcTop"><span>${T('lc_prog',{A:a,T:d.age,F:filled})}</span><button onclick="lifeListView()">${T('lc_list')}</button></div>
    <div class="lcBar">${Array.from({length:d.age},(_,k)=>`<i class="${k===LC?'cur':''} ${d.lines[k]&&d.lines[k].trim()?'f':''} ${k+1>=lifeFrom()?'him':''}" onclick="lcSave();lifeCard(${k})"></i>`).join('')}</div>
    <div class="lcCard ${him?'him':''}" id="lcCard"><button class="lcArrow l" ${LC===0?'disabled':''} onclick="lcSave();lifeCard(${LC-1})">◀</button><button class="lcArrow r" onclick="lcSave();${LC<d.age-1?`lifeCard(${LC+1})`:'lifePlay()'}">${LC<d.age-1?'▶':'🎬'}</button><div class="lcYear">${T('lc_year',{Y:lifeYear(a)})}</div><div class="lcAge">${a}<small>${T('lf_old')}</small></div><div class="lcQ mincho fit">💅 ${q}</div><div class="lcSel" id="lcSel">${esc(line)}</div><button class="lcSkip" onclick="lcSave();${LC<d.age-1?`lifeCard(${LC+1})`:'lifePlay()'}">${T('lc_skip')}</button></div>
    <div class="lcHint">${T('lc_multi')}</div>
@@ -4127,6 +4166,7 @@ function lifeCard(i){
   $('lcOwn').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();lcAddOwn()}};
   $('lfBody').scrollTop=0;
   const cb=$('lfBody').querySelector('.lcBar i.cur');if(cb)cb.scrollIntoView({block:'nearest',inline:'center'});
+  if(eraIn){$('lfBody').scrollTop=0;setTimeout(()=>{const t=$('eraTabs');if(t)t.classList.remove('big')},350);setTimeout(()=>{const h=$('eraHint');if(h)h.classList.add('out')},4200)}
 }
 const LIFE_TYP=[[1,1,[["はじめて歩いた","第一次走路"],["はじめて「ママ」って言えた","第一次會叫「媽媽」"]]],[2,2,[["イヤイヤ期で、家族を振り回した","進入「不要不要」期，把家人耍得團團轉"],["お気に入りのおもちゃができた","有了最愛的玩具"]]],[3,4,[["保育園・幼稚園に通いはじめた","開始上托兒所・幼稚園"],["友だちと遊ぶのが楽しくなった","和朋友玩變得好開心"],["毎日お絵かきしてた","每天都在畫畫"]]],[5,5,[["運動会でがんばった","在運動會上努力了"],["ひらがなが読めるようになった","開始看得懂字了"]]],[6,7,[["小学校に入学した","上小學了"],["新しいクラスメイトができた","有了新同學"],["字がたくさん書けるようになった","會寫很多字了"]]],[8,9,[["九九を覚えた","背會了九九乘法"],["放課後、友だちと毎日遊んだ","放學後，每天都和朋友玩"]]],[10,11,[["好きなことが見つかりはじめた","開始找到喜歡的事"],["遠足や修学旅行でワクワクした","遠足、畢業旅行好期待"]]],[12,12,[["小学校を卒業した","小學畢業了"]]],[13,14,[["中学生になった","上國中了"],["部活や勉強をがんばった","努力參加社團和讀書"],["新しい友だちができた","交到新朋友"]]],[15,15,[["受験をがんばった","努力準備考試"],["中学を卒業した","國中畢業了"]]],[16,17,[["高校生になった","上高中了"],["文化祭・体育祭で盛り上がった","校慶、運動會好熱鬧"]]],[18,18,[["高校を卒業した","高中畢業了"],["進路を自分で決めた","自己決定了未來的路"]]],[19,19,[["新しい生活が始まった","開始了新生活"]]],[20,20,[["大人の仲間入りをした","成為大人了"]]],[21,22,[["アルバイトや勉強をがんばった","努力打工和讀書"],["将来のことを真剣に考えた","認真思考了未來"]]],[23,24,[["社会人として新しい毎日が始まった","作為社會人士，開始了新的每一天"]]],[25,120,[["毎日ちゃんと仕事に行った","每天都好好去上班"],["家族や友だちとごはんを食べた","和家人朋友一起吃飯"],["季節のイベントを楽しんだ","享受了季節的活動"],["疲れた日も、ちゃんと眠った","累的日子，也好好睡了覺"],["新しい人に出会った","遇見了新的人"],["好きなものを、また一つ見つけた","又找到了一個喜歡的東西"]]]];
 function lifeTypical(a){const r=LIFE_TYP.find(x=>a>=x[0]&&a<=x[1]);const arr=r?r[2]:LIFE_TYP[LIFE_TYP.length-1][2];const t=arr[Math.floor(Math.random()*arr.length)];return '🌀 '+(LANG==='zh'?t[1]:t[0]).replace(/・/g,'／')}
@@ -4680,7 +4720,6 @@ const GAMES=[
  {k:'receipt',t:2,i:'🧾',n:P('恋愛の領収書','戀愛收據'),d:P('払ってたのは、誰？','付出的，是誰？')},
  {k:'auction',t:2,i:'🔨',n:P('未練の闇オークション','留戀黑市拍賣會'),d:P('その情報に、何を払う？','為了那些情報，你要付出什麼？')},
  {k:'drama',t:3,i:'🎞️',n:P('脳内ドラマ編集室','腦內劇剪輯室'),d:P('あの恋、何の映画にする？','那段戀愛，要拍成什麼電影？')},
- {k:'ng',t:3,i:'🎥',n:P('人生の没シーン','人生的NG片段'),d:P('あの日の私、演技が下手すぎた。','那天的我，演技也太爛了。')},
  {k:'interview',t:3,i:'📋',n:P('未来の恋人面接','未來戀人面試'),d:P('次の採用基準を決める','決定下一次的錄取標準')},
  {k:'trailer',t:4,i:'🎬',n:P('主演オファー殺到中！','主演片約，蜂擁而來！'),d:P('次の映画、主演はあなた。','下一部電影，主演是你。')}
 ];
@@ -4852,7 +4891,7 @@ const CR=[['💌',P('優しかった言葉','溫柔的話'),P('行動はつい�
  ['📱',P('返信を待つ癖','等回覆的習慣'),P('スマホを握ったまま寝落ちした夜 ×47','握著手機睡著的夜晚 ×47')],
  ['✈️',P('旅行の思い出','旅行的回憶'),P('計画は全部わたしが立てた、という事実','行程全部是我排的，這個事實')],
  ['🔍',P('SNS監視','社群監視'),P('彼のいとこの彼女のアカウントまで知ってる自分','連他表哥女友的帳號都知道的自己')],
- ['🎂',P('誕生日のサプライズ','生日驚喜'),P('うれしすぎて変な声が出た、あの瞬間の録音','開心到發出怪聲，那一瞬間的錄音')],
+ ['🎂',P('あんなに派手に祝ってくれた誕生日','那個幫我盛大慶祝的生日'),P('これからは「おめでとう」の一言すら届かない現実','從今以後，連一句「生日快樂」都收不到的現實')],
  ['🌙',P('夜中の長電話','半夜的長電話'),P('翌朝の、ひどいクマ','隔天早上，超深的黑眼圈')],
  ['🧥',P('借りたままのパーカー','一直沒還的帽T'),P('着心地がよすぎて返したくない問題','穿起來太舒服不想還的問題')],
  ['💬',P('「会いたい」の一言','一句「想見你」'),P('毎回こっちが会いに行ってた交通費の領収書','每次都是我去找他的交通費收據')]];
@@ -4947,18 +4986,18 @@ const DR_SC=[{s:P('返信を待ち続けた夜','一直等回覆的夜晚'),r:[
   [P('元彼の出番が消えていく','前男友的戲份逐漸消失'),P('かつて脳内を占領した男。<br>今日の出演時間は0秒。彼にとっては恐怖映画。<br>彼女にとっては、最高の休日。','曾經佔領腦內的男人。<br>今天的出場時間是0秒。對他來說是恐怖片。<br>對她來說，是最棒的假日。')],
   [P('笑顔が戻った日','笑容回來的那天'),P('午後2時17分。彼女は友達の冗談で笑った。<br>特別な事件は起きなかった。<br>ただ、笑顔が自然に戻っていた。','下午2點17分。她被朋友的玩笑逗笑了。<br>沒有發生什麼特別的事件。<br>只是，笑容自然地回來了。')],
   [P('主役交代！','主角換人！'),P('脳内映画館に緊急速報！<br>主演女優が監督の椅子を奪取！<br>「次回作から、私が主役でお願いします！」','腦內電影院緊急快報！<br>女主角搶下了導演椅！<br>「從下一部作品開始，請讓我當主角！」')]]}];
-AR_G.drama=()=>{AR.D={seen:(AR.D&&AR.D.seen)||{}};AR.skip=null;
+AR_G.drama=()=>{AR.D={seen:Object.assign({},arLoad().drSeen||{},(AR.D&&AR.D.seen)||{})};AR.skip=null;
   arShell('🎞️',Q('脳内ドラマ編集室','腦內劇剪輯室'),`<p class="arH" style="margin:0">${Q('あの恋、何の映画にする？','那段戀愛，要拍成什麼電影？')}</p><p class="arL">${Q('同じ思い出でも、<br>ジャンルが変われば別の映画。','同一段回憶，<br>換個類型就是另一部電影。')}</p>
-   <p class="arNote">${Q('編集する場面をえらんでね','選一個要剪輯的場景')}</p>${DR_SC.map((c,i)=>`<div class="rcRow" style="cursor:pointer" onclick="arDrScene(${i})"><span>🎞️ <small style="opacity:.6;font-size:10px;letter-spacing:.08em">CASE ${String(i+1).padStart(2,'0')}</small> ${arL(c.s)}</span><span>▶</span></div>`).join('')}`)};
+   <p class="arNote">${Q('編集する場面をえらんでね','選一個要剪輯的場景')}</p>${DR_SC.map((c,i)=>`<div class="rcRow" style="cursor:pointer" onclick="arDrScene(${i})"><span>🎞️ <small style="opacity:.6;font-size:10px;letter-spacing:.08em">CASE ${String(i+1).padStart(2,'0')}</small> ${arL(c.s)}</span><span>${[0,1,2,3].some(k=>!AR.D.seen[i+'-'+k])?'<i class="drNew in">NEW!</i>':''}▶</span></div>`).join('')}`)};
 function arDrScene(i,g){const D=AR.D,c=DR_SC[i];D.i=i;D.g=g;
   let res=`<p class="arNote">${Q('ジャンルを選んで変身させよう','選個類型，讓它變身')}</p>`;
-  if(g!=null){const G=DR_GN[g],r=c.r[g];D.seen[i+'-'+g]=1;try{sfx('bloom')}catch(e){}
+  if(g!=null){const G=DR_GN[g],r=c.r[g];D.seen[i+'-'+g]=1;try{const sv=arLoad();sv.drSeen=Object.assign({},sv.drSeen||{},D.seen);arSave(sv)}catch(e){}try{sfx('bloom')}catch(e){}
     D.p={kicker:G[0]+' '+arL(G[1]),title:`『${arL(r[0])}』`,tag:arL(r[1]).replace(/<br>/g,'\n'),credits:`${Q('主演・監督','主演・導演')}：${arME()}\n${c.fin?Q('特別出演','特別演出')+'：'+NAME[LANG]+Q('（今回は出番なし）','（這次沒有戲份）'):Q('原作','原作')+'：'+arL(c.s)}`};
     res=`<div class="drRes arPop" style="background:${G[2]};color:${G[3]}"><small>RE-EDITED MOVIE · ${G[0]} ${arL(G[1])}</small><b>『${arL(r[0])}』</b><p>${arL(r[1])}</p></div>${c.fin?`<div class="drCred arPop"><small>— CAST —</small><div><span>${Q('主演','主演')}</span><b>${arME()}</b></div><div><span>${Q('特別出演','特別演出')}</span><b>${NAME[LANG]}<i>${Q('（今回は出番なし）','（這次沒有戲份）')}</i></b></div></div>`:''}
      <p class="arNote">${Q('ほかのジャンルも押してみて','也按按看其他類型')}（${Object.keys(D.seen).length}/${DR_SC.length*4}）</p>
      <div class="arBtns"><button class="btn ghost small" onclick="arPoster(Object.assign({file:'lastsong_movie'},AR.D.p))">📥 ${Q('ポスターにする','做成海報')}</button><button class="btn ghost small" onclick="AR_G.drama()">🎞️ ${Q('別の場面も','換個場景')}</button></div>${arEndBtns()}`}
   arSet(`<div class="film"><div class="frame"><small>ORIGINAL SCENE</small>「${arL(c.s)}」${c.o?`<div class="drOrig">${arL(c.o)}</div>`:''}</div></div>
-   <div class="drGn">${DR_GN.map((G,k)=>`<div class="chip ${g===k?'sel':''}" onclick="arDrScene(${i},${k})">${G[0]} ${arL(G[1])}</div>`).join('')}</div>${res}`)}
+   <div class="drGn">${DR_GN.map((G,k)=>`<div class="chip ${g===k?'sel':''}" onclick="arDrScene(${i},${k})">${D.seen[i+'-'+k]?'':'<i class="drNew">NEW!</i>'}${G[0]} ${arL(G[1])}</div>`).join('')}</div>${res}`)}
 
 /* ---------- 06 送らなかったLINE博物館 ---------- */
 const MU_T=[P('あの日、言えなかったこと','那天，沒說出口的話'),P('送信しなかった愛情','沒有送出的愛'),P('最後のありがとう','最後的謝謝'),P('「どうして？」のまま終わった言葉','停在「為什麼？」的話'),P('もう届かなくていい手紙','不用再送達的信'),P('さよならの練習','練習說再見')];
@@ -5278,41 +5317,6 @@ const TR_F=[
    ['l',P('{ME}','{ME}'),P('「……承知しました、社長」','「……好的，社長。」'),'good'],
    ['p',P('恋は終わった。<br>まさかのキャリアが始まった。','戀愛結束了。<br>沒想到職涯才正要開始。'),'good']],
   acts:[P('自分の「仕事で褒められたこと」を3つ書く','寫下工作上被稱讚過的3件事'),P('挑戦してみたい仕事をひとつ調べる','查一個想挑戰的工作'),P('自分の得意なことを、ひとつ声に出して言う','大聲說出自己的一項長處')]},
- {e:'🎤',g:P('痛快ブラックコメディ','爆笑黑色喜劇'),t:P('元彼の悪口大会に、本人が参加してきた','前任吐槽大會，本人竟然來參加'),c:P('最前列に、まさかの本人。','第一排，竟然坐著本人。'),bg:'linear-gradient(160deg,#2c123d,#803c98 55%,#ffb7c9)',
-  cuts:[['n',P('親友に誘われた、秘密のトークイベント。<br>テーマは「最悪だった恋愛」。','閨蜜拉她去參加秘密脫口秀。<br>主題是「最糟的戀愛」。'),'bloom'],
-   ['l',P('司会','主持人'),P('「次の方！元彼への不満をどうぞ！」','「下一位！請吐槽前任！」'),'stamp'],
-   ['l',P('{ME}','{ME}'),P('「記念日を忘れる人がいて……」','「有個人連紀念日都忘記……」')],
-   ['s','🎤',P('客席から、ひときわ大きな拍手。<br>振り向くと——元彼。','觀眾席傳來最響亮的掌聲。<br>回頭一看——前任。'),'hurt'],
-   ['l',P('元彼','前任'),P('「その話、俺も反省してます」','「那件事，我也在反省。」')],
-   ['l',P('{ME}','{ME}'),P('「なんでここにいるの！？」','「你為什麼會在這裡！？」'),'pop'],
-   ['l',P('司会','主持人'),P('「では、ご本人から反論を」','「那請當事人來辯解。」')],
-   ['l',P('元彼','前任'),P('「……反論できません」','「……無法反駁。」'),'stamp'],
-   ['n',P('会場、スタンディングオベーション。<br>本人だけ、着席。','全場起立鼓掌。<br>只有本人還坐著。'),'good'],
-   ['p',P('人生初の満場一致。<br>拍手は、私に。','人生第一次全票通過。<br>掌聲，是給我的。'),'good']],
-  acts:[P('友達と笑い話にできる失敗をひとつ思い出す','想一件能跟朋友笑著聊的糗事'),P('親友に「今度笑える話聞いて」と送る','傳訊息給閨蜜：「下次跟妳講一個好笑的」'),P('今日、自分に拍手したいことをひとつ書く','寫下一件今天值得為自己鼓掌的事')]},
- {e:'🏆',g:P('映画祭コメディ','影展喜劇'),t:P('私の人生のNGシーンが、映画祭でグランプリを獲った','我人生的NG片段，竟然拿下影展大獎'),c:P('消したかった黒歴史が、世界で大絶賛。','最想刪掉的黑歷史，竟然轟動全球。'),bg:'linear-gradient(160deg,#211332,#624d8e 55%,#ffd87a)',
-  cuts:[['n',P('人生で一番恥ずかしかった瞬間。<br>なぜか映画祭にノミネート。','人生最丟臉的瞬間。<br>竟然入圍了電影節。'),'noti'],
-   ['l',P('{ME}','{ME}'),P('「応募してないんだけど！？」','「我根本沒報名耶！？」')],
-   ['s','🎞️',P('上映作品：『かっこよく立ち去ろう<br>として、自動ドアに激突』','放映作品：<br>《帥氣離場卻撞上自動門》'),'hurt'],
-   ['n',P('観客、爆笑。<br>審査員、涙を流して拍手。','觀眾笑翻。<br>評審流著眼淚鼓掌。'),'pop'],
-   ['l',P('審査員','評審'),P('「こんなに人間らしい演技は<br>初めてです！」','「第一次看到這麼有人性的演出！」')],
-   ['l',P('{ME}','{ME}'),P('「演技じゃないんですけど！！」','「那根本不是演技！！」'),'pop'],
-   ['s','🏆',P('そして、グランプリ受賞。<br>世界中が、あの日の私に拍手した。','結果，拿下最高獎。<br>全世界都為那天的我鼓掌。'),'good'],
-   ['l',P('司会','主持人'),P('「次回作も期待しています！」','「期待妳的下一部作品！」')],
-   ['l',P('{ME}','{ME}'),P('「次は、ちゃんと脚本ください！」','「下一部請先給我劇本啦！」'),'good'],
-   ['p',P('人生の失敗作なんて、<br>案外ないのかもしれない。','人生或許根本沒有<br>真正的失敗作品。'),'good']],
-  acts:[P('今なら笑える「昔の失敗」をひとつ書く','寫下一件現在想起來會笑的糗事'),P('昔の自分に「よくやった」と言ってみる','對過去的自己說聲「辛苦了」'),P('今日の小さなNGシーンにタイトルをつける','幫今天的小失誤取一個片名')]},
- {e:'🕶️',g:P('なりすましコメディ','假身分喜劇'),t:P('失恋したので、知らない街で別人のふりをしてみた','失戀後，我到陌生城市假裝成另一個人'),c:P('偽名を名乗った瞬間、知り合いが現れた。','剛報上假名，熟人就出現了。'),bg:'linear-gradient(160deg,#132d39,#386c83 55%,#f9bf8b)',
-  cuts:[['n',P('知らない街で、一日だけ別人になる。<br>名前も、職業も、全部自由。','在陌生城市，當一天別人。<br>名字和職業，全部自己決定。'),'bloom'],
-   ['l',P('{ME}','{ME}'),P('「今日から私は……<br>世界的な映画監督！」','「從今天起我是……<br>世界級電影導演！」'),'stamp'],
-   ['l',P('店員','店員'),P('「監督！まさかこんな所で！」','「導演！沒想到會在這裡見到您！」'),'hurt'],
-   ['l',P('{ME}','{ME}'),P('「えっ、信じた！？」','「咦，你真的信了！？」')],
-   ['s','🎬',P('店の奥から、撮影スタッフがぞろぞろ。<br>「主演が急に来られなくて！」','店裡突然湧出一群劇組人員。<br>「主演突然不能來了！」'),'pop'],
-   ['l',P('スタッフ','工作人員'),P('「監督、代役もお願いできますか？」','「導演，您能順便代演嗎？」')],
-   ['l',P('{ME}','{ME}'),P('「監督なのに主演まで！？」','「我是導演還要當主演！？」'),'pop'],
-   ['n',P('一日だけの嘘から、<br>本当に映画の主役になってしまった。','一日限定的謊言，<br>竟然讓她真的成了電影主角。'),'good'],
-   ['p',P('知らない街で、<br>知らなかった私に出会う。','在陌生的城市，<br>遇見了不認識的自己。'),'good']],
-  acts:[P('いつもと違う道を一本歩いてみる','走一條平常不走的路'),P('一日だけ名乗りたい肩書きを考える','想一個只想當一天的頭銜'),P('初めてのお店にひとりで入ってみる','試著一個人走進沒去過的店')]},
  {e:'🚀',g:P('タイムトラベル・コメディ','時光旅行喜劇'),t:P('未来の私が、元彼へのLINEを止めに来た','未來的我，穿越回來阻止我傳訊息給前任'),c:P('送信まで、あと3秒。未来の私が全力疾走。','距離送出只剩3秒。未來的我狂奔而來。'),bg:'linear-gradient(160deg,#0b1a4a,#3b2a8a 55%,#4aa6d8)',
   cuts:[['n',P('深夜0時。<br>「元気？」と打ち終えた、その瞬間。','午夜12點。<br>剛打完「最近好嗎？」的那一刻。')],
    ['s','⏰',P('部屋に突然、<br>タイムマシンが突っ込んできた！','突然，一台時光機<br>衝進了房間！'),'stamp'],
@@ -5325,15 +5329,6 @@ const TR_F=[
    ['l',P('未来の私','未來的我'),P('「そこはネタバレ禁止。<br>とにかく今は寝ろ！！」','「這個不能劇透。<br>總之現在快去睡！！」'),'good'],
    ['p',P('未来の私は、<br>私の幸せを知っている。','未來的我，<br>知道我的幸福在哪裡。'),'good']],
   acts:[P('未来の自分に、ひとつ質問を書いてみる','寫下一個想問未來自己的問題'),P('今夜はスマホを置いて、好きなことを10分する','今晚放下手機，做10分鐘喜歡的事'),P('明日の自分が楽しみになる予定をひとつ作る','安排一件讓明天的自己期待的小事')]},
- {e:'💘',g:P('ラブコメ','愛情喜劇'),t:P('恋愛を休業したら、なぜかモテ期が来た','戀愛暫停營業後，不知為何桃花期來了'),c:P('恋愛休業、初日で営業妨害。','戀愛停業，第一天就被妨礙營業。'),bg:'linear-gradient(160deg,#5a1040,#e0508a 55%,#ffc0d8)',
-  cuts:[['n',P('彼女は、宣言した。','她，發表了宣言。')],
-   ['l',P('{ME}','{ME}'),P('「もう恋愛なんてしない！<br>本日より、休業します！」','「我再也不談戀愛了！<br>今天起，暫停營業！」'),'stamp'],
-   ['s','📱',P('翌日。<br>3人から、デートのお誘い。','隔天。<br>3個人來約她。'),'noti'],
-   ['l',P('{ME}','{ME}'),P('「昨日まで、<br>誰もいなかったじゃん！」','「到昨天為止，<br>明明一個都沒有啊！」')],
-   ['l',P('友達','朋友'),P('「恋愛って、<br>そういうとこあるよね」','「戀愛啊，<br>就是有這種地方。」'),'pop'],
-   ['n',P('休業の貼り紙は、<br>その日のうちに剥がれかけた。','暫停營業的公告，<br>當天就快掉下來了。')],
-   ['p',P('恋愛休業、<br>初日で営業妨害。','戀愛停業，<br>第一天就被妨礙營業。'),'good']],
-  acts:[P('「恋愛休業中」と決めて、今日は自分の予定を優先する','宣布「戀愛停業中」，今天以自己的行程優先'),P('誘われたら行きたい場所を、ひとつ考えておく','先想一個被邀請時想去的地方'),P('友達に「最近どう？」と送る','傳「最近怎樣？」給朋友')]},
  {e:'🕵️‍♀️',g:P('恋愛ミステリー','戀愛推理'),t:P('元彼のSNSを捜査していたら、名探偵になった','調查前任的社群，結果成了名偵探'),c:P('元彼のおかげで、名探偵誕生。','多虧前任，名偵探誕生。'),bg:'linear-gradient(160deg,#141414,#4a3a2a 55%,#d8b070)',
   cuts:[['n',P('彼女は毎晩、<br>元彼のSNSを捜査していた。','她每天晚上，<br>都在調查前任的社群。')],
    ['l',P('{ME}','{ME}'),P('「この影の角度……<br>撮影は午後4時ね」','「這個影子的角度……<br>是下午4點拍的。」'),'tap'],
@@ -5343,18 +5338,6 @@ const TR_F=[
    ['l',P('{ME}','{ME}'),P('「ストーリーの背景に<br>映った時計です」','「限時動態背景裡<br>拍到的時鐘。」'),'pop'],
    ['p',P('元彼のおかげで、<br>名探偵誕生。','多虧前任，<br>名偵探誕生。'),'good']],
   acts:[P('その観察力で、自分のいいところを3つ見つける','用那個觀察力，找出自己的3個優點'),P('今日は彼のSNSの代わりに、ミステリーを1話見る','今天不看他的社群，改看一集推理劇'),P('街で「初めて気づいたもの」をひとつ探す','在街上找一個「第一次注意到的東西」')]},
- {e:'😈',g:P('異世界冒険コメディ','異世界冒險喜劇'),t:P('魔王を倒しに行ったら、魔王が元彼よりまともだった','去打倒魔王，結果魔王比前任還正常'),c:P('魔王なのに、連絡がちゃんとしてる。','明明是魔王，卻會好好回訊息。'),bg:'linear-gradient(160deg,#1a1050,#5a3ac0 55%,#8af0d0)',
-  cuts:[['n',P('失恋した夜、勇者として召喚された。<br>王様「世界を救ってくれ！」','失戀的那晚，她被召喚成勇者。<br>國王：「請拯救世界！」'),'bloom'],
-   ['s','🏰',P('魔王城、突入。<br>ついに、魔王と対面。','攻入魔王城。<br>終於，和魔王面對面。'),'attack'],
-   ['l',P('魔王','魔王'),P('「よく来たな。長旅、ご苦労。<br>食事を用意した」','「妳來了。長途跋涉，辛苦了。<br>我準備了餐點。」')],
-   ['l',P('{ME}','{ME}'),P('「えっ、優しい」','「咦，好溫柔。」')],
-   ['l',P('魔王','魔王'),P('「返事が遅れてすまない。<br>会議が長引いた」','「抱歉回覆晚了。<br>會議開太久。」'),'noti'],
-   ['l',P('{ME}','{ME}'),P('「魔王なのに、<br>連絡ちゃんとしてる！？」','「明明是魔王，<br>卻會好好回訊息！？」'),'pop'],
-   ['l',P('魔王','魔王'),P('「我が城の半分を、<br>お前にやろう」','「我的城堡，<br>分一半給妳。」')],
-   ['l',P('{ME}','{ME}'),P('「元彼は、クローゼットの<br>一段も空けてくれなかったのに！」','「前任連衣櫃的<br>一層都不肯空給我耶！」'),'hurt'],
-   ['l',P('魔王','魔王'),P('「勇者よ、我と共に<br>世界を征服しないか？」','「勇者啊，要不要和我<br>一起征服世界？」')],
-   ['p',P('「……福利厚生による」','「……要看福利。」'),'good']],
-  acts:[P('次の相手に求める「福利厚生」を3つ書く','寫下對下一個對象要求的3項「福利」'),P('「大事にされている」と感じることを、ひとつ書く','寫下一件讓你覺得「被珍惜」的事'),P('今日は自分をねぎらって、好きなものを食べる','今天慰勞自己，吃喜歡的東西')]},
  {e:'🥩',g:P('グルメ・ロードムービー','美食公路電影'),t:P('ひとり焼肉、最初の一枚','一個人的燒肉，第一片'),c:P('全部、私のペースで焼ける。','全部，都能照我的步調烤。'),bg:'linear-gradient(160deg,#4a1208,#b0421a 55%,#ffb84a)',
   cuts:[['n',P('彼女は気づいてしまった。<br>「ふたりで行こうね」の店は、<br>ひとりでも入れる。','她發現了一件事。<br>說好「一起去」的那家店，<br>一個人也進得去。')],
    ['s','🚪',P('入店。<br>店員「何名様ですか？」','進店。<br>店員：「請問幾位？」'),'tap'],
@@ -6106,10 +6089,12 @@ function arOpCard(){const O=AR.O,c=OPC[O.i];
 /* ================= 🎡 ミニゲーム集（クリア後にメインメニューから） ================= */
 const CLEARKEY='lastsong_clear';let COLL=null;
 function dawnOff(){$('dawn').style.opacity=0;$('sparkles').style.opacity='';document.body.classList.remove('dawn-on')}
+function dawnHome(){let c=false;try{c=localStorage.getItem(CLEARKEY)==='1'}catch(e){}if(c)dawnOn();else dawnOff()}
+setTimeout(()=>{try{if(CUR===0)dawnHome()}catch(e){}},0);
 function isCleared(){try{return localStorage.getItem(CLEARKEY)==='1'}catch(e){return false}}
 function collBackUpd(){const b=$('collBackBtn');if(b){b.style.display=COLL?'block':'none';b.textContent='◀ '+Q('館にもどる','回遊戲館')}}
 function collBtnUpd(){collBackUpd();const b=$('collBtn');if(b){b.style.display=isCleared()?'block':'none';b.innerHTML='🎡 '+Q('ミニゲーム集','小遊戲合集')}const r=$('rollBtn');if(r){r.style.display=isCleared()?'block':'none';r.innerHTML='🎬 '+Q('エンドロールをもう一度見る','再看一次片尾名單')}}
-function replayRoll(){const d=loadLife();if(d&&d.age){S.lifeData=d;if(d.me)ME=esc(d.me)}finalBouquet(()=>{document.body.classList.remove('theEnd');_go(0);collBtnUpd()},true)}
+function replayRoll(){try{dawnOn()}catch(e){}const d=loadLife();if(d&&d.age){S.lifeData=d;if(d.me)ME=esc(d.me)}finalBouquet(()=>{document.body.classList.remove('theEnd');_go(0);collBtnUpd()},true)}
 const COLL_STORY=[
  {i:'💐',n:P('人生の花束','人生的花束'),d:P('思い出を一輪ずつ咲かせる','讓回憶一朵一朵綻放'),f:"collScene(20)"},
  {i:'📵',n:P('通知はじき','彈掉通知'),d:P('イヤな通知をスワイプ','滑掉討厭的通知'),f:"collScene(14)"},
@@ -6121,8 +6106,8 @@ const COLL_STORY=[
 const COLL_NEW=[
  {k:'casebook',i:'⚖️',n:P('ミカ裁判長の恋愛事件簿','美香審判長的戀愛事件簿'),d:P('恋愛あるある20事件を裁く','審判20件戀愛常見事件')},
  {k:'gacha',i:'🕹️',n:P('未練クレーンゲーム','留戀夾娃娃機'),d:P('持って帰りたいものは？','想帶回家的是什麼？')}];
-function collScene(n){arStop();$('ar').classList.remove('on');AR.done=null;AR.story=null;COLL={n};collBackUpd();if(n===14)S.mg1={a:0,b:0,miss:0};if(n===15)S.mg2={a:0,b:0,hit:0};_go(n)}
-function collBack(){COLL=null;try{bStop()}catch(e){}try{stopMG&&stopMG()}catch(e){}['lm','vn','cut'].forEach(id=>{const e=$(id);e&&e.classList.remove('on')});if(typeof dawnOff==='function'){try{dawnOff()}catch(e){}}
+function collScene(n){try{dawnOff()}catch(e){}arStop();$('ar').classList.remove('on');AR.done=null;AR.story=null;COLL={n};collBackUpd();if(n===14)S.mg1={a:0,b:0,miss:0};if(n===15)S.mg2={a:0,b:0,hit:0};_go(n)}
+function collBack(){COLL=null;try{bStop()}catch(e){}try{stopMG&&stopMG()}catch(e){}['lm','vn','cut'].forEach(id=>{const e=$(id);e&&e.classList.remove('on')});try{dawnHome()}catch(e){}
   _go(0);collBtnUpd();openArcade()}
 function collHub(){arStop();AR.cur=null;AR.skip=null;AR.story=null;AR.done=null;const pl=arPlayed();
   const tile=(i,n,d,f,nw)=>`<div class="arTile" onclick="${f}"><i>${i}</i><b>${arL(n)}</b><small>${arL(d)}</small>${nw?'<em class="arNew">NEW</em>':''}</div>`;
