@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" translate="no" class="notranslate">
 <head>
+<meta name="google" content="notranslate">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>last song 暈船版</title>
@@ -858,10 +859,12 @@ body.kb .scroll{padding-bottom:40vh}
 .lfLine2{background:rgba(255,255,255,.05);border-radius:14px;padding:6px 8px}
 .lfC .lfRow{gap:4px}
 .lfC .stp{gap:4px}
-.lfC .stp button{flex:0 0 38px;height:38px;font-size:20px}
-.lfC .stp input{font-size:24px}
+.lfC .stp button{flex:0 1 38px;min-width:28px;height:38px;font-size:20px;padding:0}
+.lfC .stp input{font-size:24px;min-width:1.5em;flex:1 0 1.5em;padding:0}
 .lfC .lfRow span{flex:0 0 auto;font-size:13px;margin-right:2px}
 .lfNote{font-size:11px;color:var(--dim);margin:0;text-align:center}
+.lfC .lfRow span{position:relative;z-index:0;pointer-events:none;white-space:nowrap}.lfC .stp{position:relative;z-index:1}
+@media(max-width:335px){.lfC .lfDur{display:grid;grid-template-columns:1fr auto;row-gap:6px;align-items:center}}
 .lfC .btn{margin-top:2px}
 .fAns button.zero{background:rgba(255,215,122,.12);border-color:rgba(255,215,122,.6);color:#ffe7a6;font-size:13px}
 .fShock{display:flex;align-items:center;justify-content:center;gap:10px;margin:6px 0}
@@ -2381,7 +2384,7 @@ function showEp(ep){
 /* ================= helpers ================= */
 const $=id=>document.getElementById(id);
 const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-let NAME={ja:"あの人",zh:"那個人"};
+let NAME={ja:"あの人",zh:"那個人",en:"Him"};
 const S={filter:{a:0,keep:[]},report:null,life:null,feels:[],m1:null,m2:5,stars:0,wishes:[],self:[],learn:[],acts:[],people:[],chal:[],look:[],actsC:[],mg1:{a:0,b:0},mg2:{a:0,b:0},maxCombo:0,style:null};
 const FKEY='lastsong_friend_v1';let FMEM=[];
 function loadF(){try{return JSON.parse(localStorage.getItem(FKEY)||'[]')}catch(e){return FMEM}}
@@ -2404,7 +2407,7 @@ function chipGroup(el,g,arr,max,onchg){
     el.appendChild(d)});
 }
 
-function applyLang(){try{setTimeout(()=>typeof collBtnUpd==='function'&&collBtnUpd(),0)}catch(e){}
+function applyLang(){try{document.documentElement.lang=LANG==='zh'?'zh-Hant':'ja'}catch(e){}try{setTimeout(()=>typeof collBtnUpd==='function'&&collBtnUpd(),0)}catch(e){}
   document.body.classList.toggle('zh',LANG==='zh');
   document.documentElement.lang=LANG==='zh'?'zh-Hant':'ja';
   document.title=T('title');
@@ -2428,7 +2431,7 @@ function toggleLang(){
   try{langRefresh()}catch(e){console.error(e)}}
 
 const INIT={1:buildFeels,2:buildBubbles,3:buildReceipts,4:buildDislikes,5:buildPrompts,6:buildChat,7:buildSelf,8:buildDawn,12:buildFriend,13:buildBattle,14:buildMG1,15:buildMG2,16:buildFilter,17:buildReport,19:buildMirror,20:buildLife};
-function setName(raw){if(raw){const e=esc(raw);NAME={ja:e,zh:e}}else NAME={ja:"あの人",zh:"那個人"}}
+function setName(raw){raw=String(raw||'').trim();if(raw&&!['あの人','那個人','那个人','that','him','that person','he'].includes(raw.toLowerCase())){const e=esc(raw);NAME={ja:e,zh:e,en:e}}else NAME={ja:"あの人",zh:"那個人",en:"Him"}}
 function dawnOn(){$('dawn').style.opacity=1;$('sparkles').style.opacity=0;document.body.classList.add('dawn-on')}
 function skipChapter(){
   if($('ar').classList.contains('on')){arClose();return}
@@ -2660,7 +2663,7 @@ const CUTS={
   J("見えた。<br>30日後の、わたし。","看見了。<br>30天後的，我。",{bg:'white'}),
   J("わたしは、<br>わたしの人生の主人公だ。","我，<br>是我人生的主角。",{st:'big',bg:'white'}),
   J("恋の結末は、<br>わたしの人生の結末じゃない。","戀愛的結局，<br>不是我人生的結局。",{st:'big',bg:'white',hold:1}),
-  J("さあ、夜明けだ。","來吧，天亮了。",{bg:'dawn'})]}
+  J("さあ、夜明けだ。","來吧，天亮了。",{bg:'white'})]}
 };
 let CUT=null;
 function playCut(name,done){
@@ -3855,9 +3858,9 @@ function buildLife(){
    <div class="mikaSay lfSay">${T('lf_mika')}</div>
    <div class="lfRel"><button class="${REL==='date'?'on':''}" onclick="setRel('date')">💑 ${Q('付き合ってた','交往過')}</button><button class="${REL==='crush'?'on':''}" onclick="setRel('crush')">🌊 ${Q('片思い・曖昧な関係','單戀・暈船')}</button></div>
    <div class="lfTwo"><label><small>${Q('あなたの名前','你的名字')}</small><input class="name" id="lfMe" maxlength="12" enterkeyhint="next" onkeydown="if(event.key==='Enter'){event.preventDefault();$('lfHe').focus()}" value="${old.me||''}" placeholder="${T('lf_me_ph')}"></label>
-    <label><small>${Q('彼の名前','他的名字')}</small><input class="name" id="lfHe" maxlength="12" enterkeyhint="done" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" value="${NAME.ja==='あの人'?'':NAME.ja}" placeholder="${T('name_ph')}"></label></div>
+    <label><small>${Q('彼の名前','他的名字')}</small><input class="name" id="lfHe" maxlength="12" enterkeyhint="done" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" value="${NAME.ja==='あの人'?'':NAME.ja}" placeholder="${Q('あの人','他')}"></label></div>
    <div class="lfLine2"><small>${T('lf_age')}</small><div class="lfRow">${stp('lfAge',old.age||25,10,99)}<span>${T('lf_old')}</span></div></div>
-   <div class="lfLine2"><small id="lfDurL">${T('lf_dur')}</small><div class="lfRow">${stp('lfY',old.y??0,0,60)}<span>${T('lf_y')}</span>${stp('lfM',old.m??0,0,11)}<span>${T('lf_m')}</span></div></div>
+   <div class="lfLine2"><small id="lfDurL">${T('lf_dur')}</small><div class="lfRow lfDur">${stp('lfY',old.y??0,0,60)}<span>${T('lf_y')}</span>${stp('lfM',old.m??0,0,11)}<span>${T('lf_m')}</span></div></div>
    <p class="lfNote">🔒 ${T('lf_lead')}</p>
    <button class="btn" onclick="lifeStep2()">${T('lf_go2')}</button><div class="lfIOrow"><button class="lfIO" onclick="lifeIO(0)">💾 ${Q('記録を保存','儲存紀錄')}</button><button class="lfIO" onclick="lifeIO(1)">📂 ${Q('読み込む','讀取')}</button></div></div>`;
   $('lfNext').style.display='none';
