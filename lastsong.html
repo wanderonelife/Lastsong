@@ -558,6 +558,17 @@ body:has(#s20.on .tenCard) #skipBtn{display:none!important}
   linear-gradient(#1a0810,#1a0810) 0 0/100% calc(env(safe-area-inset-top) + 58px) no-repeat,
   radial-gradient(60% 46px at 50% calc(100% - 30px),rgba(255,236,205,.2),transparent 70%)}
 #vn[data-th="cine"][data-sc="img"] #vnMe{display:none!important}
+#pv{position:fixed;inset:0;z-index:95;background:rgba(10,4,20,.78);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:22px;opacity:0;transition:opacity .3s}
+#pv.on{opacity:1}
+.pvCard{width:100%;max-width:360px;max-height:86vh;overflow:auto;background:linear-gradient(180deg,#2a1440,#1a0b2c);border:1px solid rgba(255,143,192,.45);border-radius:22px;padding:24px 20px 20px;box-shadow:0 0 34px rgba(198,155,255,.28);color:#f6eaff;text-align:left}
+.pvT{font-size:18px;font-weight:800;line-height:1.5;text-align:center;margin-bottom:14px;color:#ffd77a}
+.pvCard p{font-size:14px;line-height:1.85;margin:0 0 11px}
+.pvCard p.pvE{color:#ffb3d6;font-weight:700;text-align:center;margin:14px 0 11px}
+.pvCard .btn{width:100%;margin-top:8px}
+@supports(height:1dvh){.card{max-height:86dvh}.arCard,#ar .card.arCard{max-height:88dvh}.pvCard{max-height:86dvh}}
+#ar .arTop{position:sticky;top:-10px;z-index:6;pointer-events:none}
+#ar .arTop button{pointer-events:auto;background:#3a2150;box-shadow:0 2px 10px rgba(0,0,0,.45)}
+#ar.nfx .arTop button{background:#2a2a2a}
 .startBtn{font-size:19px;padding:18px;animation:pulse 1.8s infinite;background:linear-gradient(90deg,#ffd77a,#ff8fc0,#c69bff)}
 .startBtn small{display:block;font-size:11px;font-weight:500;opacity:.75;margin-top:3px}
 .toast{position:fixed;z-index:90;left:50%;bottom:calc(env(safe-area-inset-bottom) + 90px);transform:translateX(-50%);background:#30283b;color:#fff;border-radius:999px;padding:10px 18px;font-size:13px;font-weight:700;box-shadow:0 8px 20px rgba(0,0,0,.3);animation:tfade 2.6s forwards;pointer-events:none;white-space:nowrap;max-width:92vw;overflow:hidden;text-overflow:ellipsis}
@@ -2996,7 +3007,16 @@ function nightSkip(){$('sky').style.opacity=.55;talk('mirrorOutX',()=>talk('road
 let credDone=null,credT=null;
 
 function endCredits(){if(!credDone)return;clearTimeout(credT);$('credits').classList.remove('on');const d=credDone;credDone=null;d()}
-function startStory(){try{dawnOff()}catch(e){}setName($('nameIn').value.trim());playCut('pro',()=>go(20))}
+function startStory(){let ok=0;try{ok=localStorage.getItem('LASTSONG1:pvOk')==='1'}catch(e){}if(!ok&&!$('pv')){pvShow();return}startStory2()}
+function startStory2(){try{dawnOff()}catch(e){}setName($('nameIn').value.trim());playCut('pro',()=>go(20))}
+function pvShow(){const d=document.createElement('div');d.id='pv';d.innerHTML=`<div class="pvCard"><div class="pvT">🔒 ${Q('あなたの記録は、<br>あなただけのもの。','你的紀錄，<br>只屬於你。')}</div>
+<p>${Q('このゲームで入力した内容は、すべてお使いのスマートフォン内に保存されます。','你在這個遊戲裡輸入的內容，全部只會儲存在你的手機裡。')}</p>
+<p>${Q('運営側にはデータを保存するサーバーがないため、あなたが書いた内容を見たり、収集したりすることはできません。','我們沒有儲存資料的伺服器，所以無法查看、也無法收集你寫下的內容。')}</p>
+<p class="pvE">${Q('誰かに見せるためではなく、自分のために。','不是為了給誰看，而是為了自己。')}</p>
+<p>${Q('どうぞ安心して、素直な気持ちを書いてください。','請放心，寫下你最真實的心情。')}</p>
+<button class="btn" id="pvOk">${Q('わかった、はじめる','我知道了，開始吧')}</button></div>`;
+  document.body.appendChild(d);requestAnimationFrame(()=>d.classList.add('on'));
+  $('pvOk').onclick=()=>{try{localStorage.setItem('LASTSONG1:pvOk','1')}catch(e){}try{sfx('pop')}catch(e){}d.remove();startStory2()}}
 
 /* danmaku */
 let dmTimers=[];
